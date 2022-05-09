@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cinema.mapper.MovieManagerMapper">
+<select id="movieList"
+	resultType="com.cinema.domain.MovieManagerDto">
+	SELECT * FROM MANAGER_MOVIE
+</select>
+
+<select id="movieGetTotalCount">
+	<![CDATA[
+	SELECT COUNT(*) FROM MANAGER_MOVIE WHERE MOVIENO>0	
+	]]>
+</select>
+
+<insert id="movieRegister">
+	INSERT INTO MANAGER_MOVIE(MOVIENO, MOVIETITLE,
+	MOVIEETITLE, MOVIEDIRECTER,
+	MOVIEACTOR, MOVIETYPE,
+	MOVIEGENRE,
+	MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE)
+	VALUES(SEQUENCE_MOVIE.NEXTVAL,#{movieTitle},#{movieEtitle},#{movieDirector},#{movieActor},#{movieType},#{movieGenre},#{movieGrade},#{movieContents},#{movieOpendate})
+</insert>
+
+<select id="movieDetail"
+	resultType="com.cinema.domain.MovieManagerDto">
+	<![CDATA[
+	SELECT * FROM MANAGER_MOVIE WHERE MOVIENO=#{movieNo}
+	]]>
+</select>
+
+<update id="movieDetailModify">
+	<![CDATA[
+	UPDATE MANASER_MOVIE SET MOVIETITLE=#{movieTitle}, MOVIEETITLE=#{movieEtitle}, MOVIEDIRECTER=#{movieDirecter}, MOVIEACTOR=#{movieActor}, MOVIETYPE=#{movieType}, 
+	MOVIEGENRE=#{movieGenre}, MOVIEGRADE=#{movieGrade}, MOVIECONTENTS=#{movieContents}, MOVIEOPENDATE=#{movieOpendate} WHERE MOVIENO=#{movieNo}
+	]]>
+</update>
+
+<delete id="movieDelete">
+	<![CDATA[
+	DELETE FROM MANAVER_MOVIE WHERE MOVIENO=#{movieNo}
+	]]>
+</delete>
+
+<select id="movieSearch"
+	resultType="com.cinema.domain.MovieManagerDto">
+	SELECT * FROM MANAGER_MOVIE WHERE
+	(MOVIETITLE LIKE
+	'%#{keyword}%' OR MOVIEETITLE LIKE
+	'%'||#{keyword}||'%')
+</select>
+</mapper>

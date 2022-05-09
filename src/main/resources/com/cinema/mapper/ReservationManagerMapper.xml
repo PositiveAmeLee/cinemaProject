@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cinema.mapper.ReservationManagerMapper">
+
+	 
+  <select id="reservationList" resultType="com.cinema.domain.ReservationManagerDto">
+  <![CDATA[
+  SELECT * FROM MANAGER_RESERVATION
+  ]]>
+  </select>
+  
+  <select id="reservationGetTotalCount">
+  <![CDATA[
+  SELECT COUNT(*) FROM MANAGER_RESERVATION WHERE RESNO>0
+  ]]>
+  </select>
+  
+  <select id="reservationDetail" resultType="com.cinema.domain.ReservationManagerDto">
+    <![CDATA[
+    SELECT * FROM MANAGER_RESERVATION WHERE RESNO=#{resNo}  
+    ]]>
+  </select>
+
+  <update id="reservationDetailModify">
+  <![CDATA[
+  UPDATE MANAGER_RESERVATION SET MOVIENO=#{movieNo}, RESTHEATER=#{resTheater}, RESCINEMA=#{resCinema}, 
+  RESDATE=#{resDate}, RESPERSON=#{resPerson}, RESSEATNO=#{resSeatNo}, RESTOTAL=#{resTotal} WHERE MEMBERNO=#{memberNo}
+  ]]>
+  </update>
+
+  <delete id="reservationManagerDelete">
+  <![CDATA[
+  DELETE FROM MANAGER_RESERVATION WHERE RESNO=#{resNo}
+  ]]>
+  </delete>
+
+  <select id="reservationManagerSearch" resultType="com.cinema.domain.ReservationManagerDto">
+  SELECT MR.* FROM MANAGER_RESERVATION MR, MANAGER_MEMBER MM WHERE MM.MEMBERNO IN 
+  (SELECT MEMBERNO FROM MANAGER_MEMBER WHERE(MEMBERID=#{keyword}) AND MR.MEMBERNO=MM.MEMBERNO);
+  </select>
+
+</mapper>
