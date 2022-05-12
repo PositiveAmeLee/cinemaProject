@@ -8,33 +8,14 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<!DOCTYPE html>
-<html>
-<head>
-<title>Cinema A Entertainment Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
-<link href="resources/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- Custom Theme files -->
-<link href="resources/css/style.css" rel="stylesheet" type="text/css" media="all" />
-<!-- Custom Theme files -->
-<script src="resources/js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Cinema Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--webfont-->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-</head>
-<body>
-<!--  header  -->
+
 <%@ include file="../common/header.jsp"%>
 		<div class="main">
 		<div class="header">
 			<div class="top-header">
 				<div class="logo">
 					<a href="index.html"><img src="resources/images/logo.png" alt="" /></a>
-					<p>Movie Theater</p>
+					<p>Ezen Cinema</p>
 				</div>
 				<div class="search">
 					<form>
@@ -45,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="clearfix"></div>
 			</div>
 			<div class="header-info">
-				<h1>BIG HERO 6</h1>
+				<h1>BIG HERO 6</h1>	
 				<p class="age"><a href="#">All Age</a> Don Hall, Chris Williams</p>
 				<p class="review">Rating	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;  8,5/10</p>
 				<p class="review reviewgo">Genre	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp; Animation, Action, Comedy</p>
@@ -98,11 +79,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="news">
 			<div class="col-md-6 news-left-grid">
-				<h3>Don’t be late,</h3>
-				<h2>Book your ticket now!</h2>
-				<h4>Easy, simple & fast.</h4>
-				<a href="#"><i class="book"></i>BOOK TICKET</a>
-				<p>Get Discount up to <strong>10%</strong> if you are a member!</p>
+				<h3>영화보러 가요!</h3>
+				<h2>지금 당장 예매하기</h2>
+				<h4>#쉽고 #간편한 #빠른</h4>
+				<a href="#"><i class="book"></i>빠른 예매</a>
+				<p>멤버쉽등급을 높이고 <strong>10%</strong> 할인을 받으세요!</p>
 			</div>
 			<div class="col-md-6 news-right-grid">
 				<h3>News</h3>

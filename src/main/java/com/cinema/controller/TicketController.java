@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,6 +21,13 @@ import lombok.extern.log4j.Log4j;
 public class TicketController {
 
 	private TicketService ticketService;
+	
+	// 
+	@GetMapping("/ticketForm")
+	public void ticketForm() {
+		log.info("move to ticketForm..........");
+	}
+	
 	
 //	@GetMapping()
 	public String get(Long ticketNO,Model model) {

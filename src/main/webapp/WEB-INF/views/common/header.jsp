@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cinema A Entertainment Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+<title>More than just movie, Ezen Cinema</title>
 <link href="resources/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <link href="resources/css/style.css" rel="stylesheet" type="text/css" media="all" />
