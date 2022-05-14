@@ -8,20 +8,22 @@ import com.cinema.domain.Criteria;
 import com.cinema.domain.MovieVO;
 import com.cinema.mapper.MovieMapper;
 
+import lombok.AllArgsConstructor;
+
 
 @Service
+@AllArgsConstructor
 public class MovieServiempl implements MovieService {
+
 	private MovieMapper movieMapper;
 
 	@Override
 	public List<MovieVO> movieList() {
-		// TODO Auto-generated method stub
 		return movieMapper.movieList();
 	}
 
 	@Override
 	public MovieVO movieInfo(long movie_no) {
-		// TODO Auto-generated method stub
 		return movieMapper.movieInfo(movie_no);
 	}
 

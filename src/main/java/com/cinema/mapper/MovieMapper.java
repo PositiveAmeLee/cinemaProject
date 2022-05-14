@@ -7,10 +7,8 @@ import com.cinema.domain.MovieVO;
 
 public interface MovieMapper {
 
-//	@Select("select * from movie where movie_no > 0")
 	public List<MovieVO> movieList();
 
-//  @Select("select * from movie where movie_no = #{movie_no}")
 	public MovieVO movieInfo(long movie_no);
 
 //	@Select("Select * from movie order by movie_star_rating")

@@ -22,20 +22,22 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @RequestMapping("/movie/*")
 public class MovieController {
+	
 	@Autowired
 	private MovieService movieService;
 
 //	1. 영화 전체 목록
-//	@GetMapping(/list)
+	@GetMapping("/list")
 	public void movieList(Criteria cri, Model model) {
 		model.addAttribute("list", movieService.movieList());
 	}
 
 //	2. 영화 상세 정보
-	@GetMapping("/info/{movie_title}")
-	public ResponseEntity<MovieVO> movieInfo(@PathVariable("movie_no") long movie_no) {
+	@GetMapping("/info")
+	public String movieInfo(long movie_no,Model model) {
 		MovieVO movieVO = movieService.movieInfo(movie_no);
-		return new ResponseEntity<>(movieVO, HttpStatus.OK);
+		model.addAttribute("movie",movieVO);
+		return "";
 	}
 
 //	3. 영화 검색

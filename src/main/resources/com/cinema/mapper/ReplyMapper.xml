@@ -6,7 +6,8 @@
 
 	<select id="get" resultType="com.cinema.domain.ReplyVO">
 
-		select * from comment where replyNO=#{replyNO}
+		select * from movie_comment where
+		replyNO=#{replyNO}
 
 
 	</select>
@@ -14,7 +15,8 @@
 	<select id="getListFindByMovieNO"
 		resultType="com.cinema.domain.ReplyVO">
 
-		select * from comment where movieNO=#{movieNO}
+		select * from movie_comment where movieNO=#{movieNO} and
+		title != 'NO TITLE'
 
 	</select>
 
@@ -27,22 +29,25 @@
 
 	<insert id="insert">
 
-		insert into comment (replyNO,movieNO,memberNO,title,content,star)
+		insert into movie_comment
+		(replyNO,movieNO,memberNO,title,content,stars)
 		values
-		(seq_comment.nextval,#{movieNO},#{memberNO},#{title},#{content},#{star})
+		(SEQ_MOVIE_COMMENT.nextval,#{movieNO},#{memberNO},#{title},#{content},#{stars})
 
 	</insert>
 
 	<update id="update">
 
-		update comment set title = #{title} ,content=#{content},star=#{star},
-		modifiedAt = sysdate, where replyNO = #{replyNO}
+		update movie_comment set title = #{title}
+		,content=#{content},stars=#{stars}
+		where replyNO =
+		#{replyNO}
 
 	</update>
 
 	<delete id="delete">
 
-		delete from comment where replyNO = #{replyNO}
+		delete from movie_comment where replyNO = #{replyNO}
 
 	</delete>
 

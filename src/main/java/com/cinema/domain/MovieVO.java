@@ -16,8 +16,9 @@ public class MovieVO {
 	private String movie_synopsis;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date movie_release_date;
-	private long movie_res_rating;
-	private long movie_star_rating;
+	private double movie_res_rating;
+	private double movie_star_rating;
 	private boolean movie_state;
 	private String movie_trailer;
+	private String movie_image_file_name;
 }

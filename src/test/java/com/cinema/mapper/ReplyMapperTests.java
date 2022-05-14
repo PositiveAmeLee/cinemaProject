@@ -64,7 +64,7 @@ public class ReplyMapperTests {
 			replyVO.setMemberNO(memberNOArr[i%5]);
 			replyVO.setTitle("댓글테스트 "+i);
 			replyVO.setContent("댓글 테스트 "+i);
-			replyVO.setStar(randomNO);
+			replyVO.setStars(randomNO);
 			replyMapper.insert(replyVO);
 		});
 	}

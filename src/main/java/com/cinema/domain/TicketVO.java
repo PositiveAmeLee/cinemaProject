@@ -5,11 +5,16 @@ import lombok.Data;
 @Data
 public class TicketVO extends BaseVO{
 	
-	private Long ticketNO;
 	private Long memberNO;
-	private Long movieNO;
-	private Long cinemaNO;
-	private Long theaterNO;
-	private String seatNO;
-
+	private Long ticketNO;
+	private String id;
+	private int reserveSequence;
+	private String title;
+	private String runningTime;
+	private String movieDate;
+	private String reserveDate;
+	private String ticketNumber;
+	private String selectedSeat;
+	private String selectedTheater;
+	private String movieAge;
 }

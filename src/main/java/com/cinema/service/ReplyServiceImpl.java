@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import com.cinema.domain.ReplyVO;
 import com.cinema.mapper.ReplyMapper;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class ReplyServiceImpl implements ReplyService {
 
 	private ReplyMapper replyMapper;

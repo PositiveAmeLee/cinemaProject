@@ -4,11 +4,11 @@
 <html>
 <head>
 <title>More than just movie, Ezen Cinema</title>
-<link href="resources/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="/resources/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
-<link href="resources/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/resources/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <!-- Custom Theme files -->
-<script src="resources/js/jquery.min.js"></script>
+<script src="/resources/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,10 +23,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="full">
 			<div class="menu">
 				<ul>
-					<li><a class="active" href="index.html"><i class="home"></i></a></li>
+					<li><a class="active" href="/"><i class="home"></i></a></li>
 					<li><a href="videos.html"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li>
-					<li><a href="reviews.html"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
-					<li><a href="404.html"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
+					<li><a href="/replies/reviewMain"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
+					<li><a href="/ticket/ticketForm"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
 					<li><a href="contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
 				</ul>
 			</div>

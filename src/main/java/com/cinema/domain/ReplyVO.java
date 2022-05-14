@@ -16,6 +16,6 @@ public class ReplyVO extends BaseVO{
 	
 	private String content;
 	
-	private int star;
+	private int stars;
 	
 }
