@@ -12,7 +12,6 @@ public class TicketVO extends BaseVO{
 	private String title;
 	private String runningTime;
 	private String movieDate;
-	private String reserveDate;
 	private String ticketNumber;
 	private String selectedSeat;
 	private String selectedTheater;

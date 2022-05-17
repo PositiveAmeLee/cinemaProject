@@ -819,6 +819,36 @@ a.b-home:hover{
 	outline: none;
 	font-weight:400;
 }
+.main-contact form input[type="password"],.main-contact form textarea{
+	width: 100%;
+	padding: 10px 14px;
+	border: 3px solid #000;
+	font-size: 1.2em;
+	margin-bottom:1.5em;
+	color: #000;
+	outline: none;
+	font-weight:400;
+}
+.main-contact form input[type="radio"],.main-contact form textarea{
+	width: 100%;
+	padding: 10px 14px;
+	border: 3px solid #000;
+	font-size: 1.2em;
+	margin-bottom:1.5em;
+	color: #000;
+	outline: none;
+	font-weight:400;
+}
+.main-contact form input[type="select"],.main-contact form textarea{
+	width: 100%;
+	padding: 10px 14px;
+	border: 3px solid #000;
+	font-size: 1.2em;
+	margin-bottom:1.5em;
+	color: #000;
+	outline: none;
+	font-weight:400;
+}
 .main-contact form textarea {
 	resize:none;
 	height:201px;
@@ -840,6 +870,26 @@ a.b-home:hover{
 	-ms-transition:0.5s all;
 }
 .main-contact form input[type="submit"]:hover{
+	background:#fff;
+	color:#000;
+}
+
+.main-contact form input[type="button"] {
+	font-size: 1.35em;
+	font-weight:400;
+	color: #fff;
+	outline: none;
+	border: 3px solid #000;
+	padding: 0.5em 3em;
+	background:#000;
+	margin-top: 0em;
+	transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+.main-contact form input[type="button"]:hover{
 	background:#fff;
 	color:#000;
 }
@@ -1847,6 +1897,27 @@ font-weight: 700;
 		margin-bottom: 1.2em;
 		font-weight: 400;
 	}
+		.main-contact form input[type="password"], .main-contact form textarea {
+		padding: 8px 12px;
+		border: 2px solid #000;
+		font-size: 1.1em;
+		margin-bottom: 1.2em;
+		font-weight: 400;
+	}
+		.main-contact form input[type="radio"], .main-contact form textarea {
+		padding: 8px 12px;
+		border: 2px solid #000;
+		font-size: 1.1em;
+		margin-bottom: 1.2em;
+		font-weight: 400;
+	}
+		.main-contact form input[type="select"], .main-contact form textarea {
+		padding: 8px 12px;
+		border: 2px solid #000;
+		font-size: 1.1em;
+		margin-bottom: 1.2em;
+		font-weight: 400;
+	}
 	.map iframe {
 		min-height: 250px;
 	}
@@ -2169,6 +2240,13 @@ font-weight: 700;
 		font-size: 0.9em;
 	}
 	.main-contact form input[type="text"], .main-contact form textarea {
+		padding: 7px 11px;
+		border: 1px solid #000;
+		font-size: 1em;
+		margin-bottom: 1em;
+		font-weight: 400;
+	}
+		.main-contact form input[type="password"], .main-contact form textarea {
 		padding: 7px 11px;
 		border: 1px solid #000;
 		font-size: 1em;

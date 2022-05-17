@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<%@page import="com.cinema.domain.MemberVO"%>
 
 <html lang="en">
 
@@ -26,7 +26,13 @@
 	content="Cinema Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
 </script>
 <!--webfont-->
 <link
@@ -275,6 +281,20 @@ body {
 	color: white;
 }
 </style>
+
+<%
+MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+%> 
+<%
+if (memberVO == null) {
+%>
+<script>
+	alert("로그인이 필요한 작업입니다 로그인을 진행해 주세요!")
+	location.href = "/member/login"
+</script>
+<%
+}
+%>
 </head>
 
 <body>
@@ -305,13 +325,13 @@ body {
 					<div class="sort-rate sort-selected">예매율순</div>
 					<div class="sort-korean">가나다순</div>
 				</div>
-             <div class="movie-list-wrapper">
-                <div class="movie-list">
-                    <%-- <div class="movie-list-age">15</div>
+				<div class="movie-list-wrapper">
+					<div class="movie-list">
+						<%-- <div class="movie-list-age">15</div>
                     <div class="movie-list-title">1917</div> --%>
-                </div>
-            </div>
-        </div>
+					</div>
+				</div>
+			</div>
 			<div class="theater-part">
 				<div class="reserve-title">극장</div>
 				<div class="theater-container">
@@ -376,7 +396,8 @@ body {
 					</div>
 				</div>
 				<div>
-					<form class="moveSeatForm" action="/ticket/ticketSeat" method="post">
+					<form class="moveSeatForm" action="/ticket/ticketSeat"
+						method="post">
 						<input type="hidden" class="title" name="title"> <input
 							type="hidden" class="movieAge" name="movieAge"> <input
 							type="hidden" class="selectedTheater" name="selectedTheater">

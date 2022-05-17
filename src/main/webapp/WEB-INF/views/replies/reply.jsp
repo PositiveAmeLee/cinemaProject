@@ -11,21 +11,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 
 <%@ include file="../common/header.jsp"%>
-<div class="main">
-	<div class="single-content">
-		<div class="top-header span_top">
-			<div class="logo">
-				<a href="index.html"><img src="/resources/images/logo.png"
-					alt="" /></a>
-				<p>Movie Theater</p>
-			</div>
-			<div class="search v-search">
-
-				<input type="text" value="Search.." onfocus="this.value = '';"
-					onblur="if (this.value == '') {this.value = 'Search..';}" /> <input
-					type="submit" value="">
-
-			</div>
 			<div class="clearfix"></div>
 		</div>
 		<div class="reviews-section">
@@ -33,11 +18,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="col-md-9 reviews-grids">
 				<div class="review">
 					<div class="movie-pic">
-						<a href="single.html"><img
+						<a href=""><img
 							src="${movie.movie_image_file_name }" alt="" /></a>
 					</div>
 					<div class="review-info">
-						<a class="span" href="single.html">${movie.movie_title} <i>Movie
+						<a class="span" href="">${movie.movie_title} <i>Movie
 								Review</i></a>
 						<p class="dirctr">
 							<a href="">${movie.movie_director } </a>${movie.movie_release_date }

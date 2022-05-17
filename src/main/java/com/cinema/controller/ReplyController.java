@@ -54,12 +54,6 @@ public class ReplyController {
 		model.addAttribute("reply", replyVO);
 	}
 	
-// @GetMapping("/getListFindByMemberNO/{memberNO}")
-	public ResponseEntity<List<ReplyVO>> getListFindByMemberNO(@PathVariable("memberNO")Long memberNO){
-		log.info("get ReplyList where memberNO: "+memberNO);
-		return new ResponseEntity<>(replyService.getListFindByMemberNO(memberNO),HttpStatus.OK);
-	}
-	
     @PostMapping("/writeReview")	
 	public String create(ReplyVO replyVO){
 		log.info("create Reply..........replyVO: "+replyVO);

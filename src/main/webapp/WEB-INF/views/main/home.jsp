@@ -25,27 +25,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 }
 </style>
 
-<div class="main">
-	<div class="header">
-		<div class="top-header">
-			<div class="logo">
-				<a href="index.html"><img src="resources/images/logo.png" alt="" /></a>
-				<p>Ezen Cinema</p>
-			</div>
-			<div class="search">
-				<form>
-					<input type="text" value="Search.." onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'Search..';}" /> <input
-						type="submit" value="">
-				</form>
-			</div>
 			<div class="clearfix"></div>
 		</div>
 		<div class="header-info" >
 			<h2 style="color: white;">${main.movie_title}</h2>
-			<p class="age">
-				<a href="#">12세 관람가</a> ${main.movie_director}, ${main.movie_cast}
-			</p>
+			
 			<p class="review">Rating
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;
 				${main.movie_star_rating}/10</p>
@@ -56,7 +40,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				${main.movie_release_date}</p>
 			<p class="special">${main.movie_synopsis}</p>
 			<a class="video" href="${main.movie_trailer}"><i class="video1"></i>트레일러
-				보기</a> <a class="book" href="#"><i class="book1"></i>예매하러 가기</a>
+				보기</a> <a class="book" href="/ticket/ticketForm"><i class="book1"></i>예매하러 가기</a>
 		</div>
 	</div>
 	<div class="review-slider">
@@ -105,7 +89,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<h3>영화보러 가요!</h3>
 			<h2>지금 당장 예매하기</h2>
 			<h4>#쉽고 #간편한 #빠른</h4>
-			<a href="#"><i class="book"></i>빠른 예매</a>
+			<a href="/ticket/ticketForm"><i class="book"></i>빠른 예매</a>
 			<p>
 				멤버쉽등급을 높이고 <strong>10%</strong> 할인을 받으세요!
 			</p>

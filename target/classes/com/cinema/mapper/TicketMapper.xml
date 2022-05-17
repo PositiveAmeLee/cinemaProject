@@ -16,10 +16,10 @@
  
  </select>
  
- <insert id = "ticket">
+ <insert id = "ticketing">
  
-  insert into ticket (ticketNO,memberNO,movieNO,cinemaNO,theaterNO,seatNO)
-  values (seq_ticket.nextval,#{memberNO},#{movieNO},#{cinemaNO},#{theaterNO},#{seatNO})
+  insert into movie_ticket (ticketNO,memberNO,id, reserveSequence, title, runningTime, movieDate, ticketNumber, selectedSeat, selectedTheater)
+  values (seq_ticket.nextval,#{memberNO},#{id}, #{reserveSequence}, #{title}, #{runningTime}, #{movieDate}, #{ticketNumber}, #{selectedSeat}, #{selectedTheater})
  
  </insert>
  

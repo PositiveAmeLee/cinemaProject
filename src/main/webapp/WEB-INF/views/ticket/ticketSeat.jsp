@@ -119,20 +119,22 @@
 						<div class="ticket-price-title">가격</div>
 						<div class="ticket-price">0원</div>
 					</div>
-					<form action="moveKakao.do" class="seatForm" method="post">
+					<form action="/ticket/ticketing" class="seatForm" method="post">
 						<input type="hidden" class="title" name="title"> <input
 							type="hidden" class="selectedTheater" name="selectedTheater">
 						<input type="hidden" class="reserveDate" name="movieDate">
 						<input type="hidden" class="runningTime" name="runningTime">
-						<input type="hidden" class="movieAge" name="movieAge"
-							value="<%=reserve.getMovieAge()%>">
+						
+						<!-- 멤버 하드코딩 -->
+						<input type="hidden" class="memberNO" name="memberNO" value="1">
+						<input type="hidden" class="id" name="id" value="id">
 						<!-- 티켓의수(선택한 좌석) -->
 						<input type="hidden" class="ticketNumber" name="ticketNumber">
 						<input type="hidden" class="selectedSeat" name="selectedSeat">
 						<!-- 결제 정보 -->
 						<input type="hidden" class="payMoney" name="payMoney">
 						<button type="button" class="reserve-button">
-							결제하기<img src="/resources/cgv/images/payment_icon_yellow_medium.png">
+							예약하기
 						</button>
 					</form>
 				</div>

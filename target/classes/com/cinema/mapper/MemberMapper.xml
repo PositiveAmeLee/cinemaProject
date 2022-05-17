@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cinema.mapper.MemberMapper">
+
+	<select id="login" resultType="com.cinema.domain.MemberVO">
+
+		select * from movie_member
+		where
+		member_id=#{member_id}
+		and member_pw=#{member_pw}
+
+	</select>
+
+	<insert id="memberJoin">
+
+		insert into movie_member(
+		member_id,
+		member_pw,
+		member_name,
+		member_gender,
+		member_birth_y,
+		member_birth_m,
+		member_birth_d,
+		member_birth_gn,
+		tel1,
+		tel2,
+		tel3,
+		hp1,
+		hp2,
+		hp3,
+		smssts_yn,
+		email1,
+		email2,
+		emailsts_yn,
+		zipcode,
+		roadAddress,
+		jibunAddress,
+		namujiAddress,
+		member_no)
+		values(#{member_id},
+		#{member_pw},
+		#{member_name},
+		#{member_gender},
+		#{member_birth_y},
+		#{member_birth_m},
+		#{member_birth_d},
+		#{member_birth_gn},
+		#{tel1},
+		#{tel2},
+		#{tel3},
+		#{hp1},
+		#{hp2},
+		#{hp3},
+		#{smssts_yn},
+		#{email1},
+		#{email2},
+		#{emailsts_yn},
+		#{zipcode},
+		#{roadAddress},
+		#{jibunAddress},
+		#{namujiAddress},
+		seq_movie_member.nextval
+		)
+
+	</insert>
+
+	<update id="memberModify">
+
+		update movie_member set
+		member_pw = #{member_pw},
+		tel1 = #{tel1},
+		tel2 = #{tel2},
+		tel3 = #{tel3},
+		hp1 = #{hp1},
+		hp2 = #{hp2},
+		hp3 = #{hp3},
+		smssts_yn =
+		#{smssts_yn},
+		email1 = #{email1},
+		email2 =
+		#{email2},
+		emailsts_yn =
+		#{emailsts_yn},
+		zipcode = #{zipcode},
+		roadAddress = #{roadAddress},
+		jibunAddress = #{jibunAddress},
+		namujiAddress = #{namujiAddress}
+
+	</update>
+
+	<select id="overlapped" parameterType="String"
+		resultType="String">
+
+		select decode(count(*),1, 'true', 0, 'false')
+		from
+		movie_member
+		where member_id = #{id}
+
+	</select>
+
+</mapper>

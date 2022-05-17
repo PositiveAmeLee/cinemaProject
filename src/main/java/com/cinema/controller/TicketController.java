@@ -80,16 +80,11 @@ public class TicketController {
 		return "TicketLists";
 	}
 	
-// @PostMapping()
-	public String ticketing(List<TicketVO> tickets,RedirectAttributes rttr) {
-		for(int i = 0 ; i<tickets.size();i++) {
-			int result = ticketService.ticketing(tickets.get(i));
-			log.info("ticketing..........ticketNO: "+tickets.get(i).getTicketNO());
-		}//end for
-		
-		rttr.addAttribute("result","예매가 완료되었습니다.");
-
-		return ""; //getAll 메소드 호출하도록 만들기.
+    @PostMapping(value="ticketing")
+	public String ticketing(TicketVO ticketVO) {
+		log.info("ticketing.....ticketVO: "+ticketVO);
+		int result = ticketService.ticketing(ticketVO);
+    	return "redirect:/";
 	}
 	
 // @PostMapping()
