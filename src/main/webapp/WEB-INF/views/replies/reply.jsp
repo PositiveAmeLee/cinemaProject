@@ -113,7 +113,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<option value="9">9.Best</option>
 							<option value="10">10.Best You've never seen before</option>
 						</select> <input type="hidden" value="${movie.movie_no}" name="movieNO">
-						<input type="hidden" value="1" name="memberNO"> <input
+						<input type="hidden" value="${memberVO.member_no}" name="memberNO"> <input
 							type="text" class="text" value="title" name="title"
 							onfocus="this.value = '';"
 							onblur="if (this.value == '') {this.value = 'Enter title';}">

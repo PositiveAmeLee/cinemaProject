@@ -56,12 +56,12 @@ loginButton.addEventListener('click', () => {
 
 // 회원가입 창으로 이동
 moveRegister.addEventListener('click', () => {
-    location.href = 'moveRegister.do';
+    location.href = '/member/join';
 });
 
 // 메인 홈페이지로 이동
 moveMain.addEventListener('click', () => {
-    location.href = 'moveMain.do';
+    location.href = '/';
 });
 
 // 쿠키 처리 부분

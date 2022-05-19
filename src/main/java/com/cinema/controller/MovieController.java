@@ -46,5 +46,4 @@ public class MovieController {
 		model.addAttribute("pageNum", cri.getPageNum());
 		model.addAttribute("keyword", cri.getKeyword());
 	}
-
 }

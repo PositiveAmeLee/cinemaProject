@@ -2,109 +2,97 @@
 	pageEncoding="utf-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
-<head>
-<title>More than just movie, Ezen Cinema</title>
-<link href="/resources/css/bootstrap.css" rel='stylesheet'
-	type='text/css' />
-<!-- Custom Theme files -->
-<link href="/resources/css/style.css" rel="stylesheet" type="text/css"
-	media="all" />
-<!-- Custom Theme files -->
-<script src="/resources/js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords"
-	content="Cinema Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript">
-	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-</script>
-<!--webfont-->
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-<meta charset="utf-8">
-<c:if test='${not empty tried}'>
-<script>
-window.onload=function()
-{
-  result();
-}
 
-function result(){
-	alert("아이디나  비밀번호가 틀립니다. 다시 로그인해주세요");
-}
-</script>
-</c:if>
+<head>
+
+
+<meta charset="utf-8">
+<title>Ezen cinema 로그인페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet"
+	href="fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="/resources/cgv/css/style.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<link rel='stylesheet'
+	href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' />
+<script
+	src='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+<script src="http://lab.alexcican.com/set_cookies/cookie.js"
+	type="text/javascript"></script>
 </head>
+
 <body>
-<div class="full">
-			<div class="menu">
-				<ul>
-					<li><a href="/"><div class="hm"><i class="home1"></i><i class="home2"></i></div></a></li>
-					<li><a href="videos.html"><div class="video"><i class="videos"></i><i class="videos1"></i></div></a></li>
-					<li><a href="/replies/reviewMain"><div class="cat"><i class="watching"></i><i class="watching1"></i></div></a></li>
-					<li><a href="/ticket/ticketForm"><div class="bk"><i class="booking"></i><i class="booking1"></i></div></a></li>
-					<li><a class="active" href="contact.html"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
-				</ul>
+	<c:if test="${not empty message}">
+	<script>
+	var message = "${message}";
+	alert(message);
+	</script>
+	</c:if>
+	<div class="wrapper" style="">
+
+		<div class="inner">
+			<div class="image-holder">
+				<img id="poster" src="${main.movie_image_file_name}" alt="">
 			</div>
-		<div class="main">
-		<div class="contact-content">
-			<div class="top-header span_top">
-				<div class="logo">
-					<a href="index.html"><img src="/resources/images/logo.png" alt="" /></a>
-					<p>Movie Theater</p>
+			<form action="/member/login" id="loginForm" method="post">
+				<p class="register-title">
+					<img src="/resources/images/logo.png"> &nbsp;&nbsp; <span>
+						&nbsp;&nbsp;로그인</span>
+				</p>
+				<div class="form-wrapper form-wrapper-id">
+					<div class="id-wrapper">
+						<input id="id" name="member_id" type="text" placeholder="아이디"
+							class="form-control"> <i class="zmdi zmdi-accounts"></i>
+					</div>
 				</div>
-				<div class="search v-search">
-					<form>
-						<input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}"/>
-						<input type="submit" value="">
-					</form>
+
+				<div class="form-wrapper">
+					<input type="password" name="member_pw" placeholder="비밀번호"
+						id="password" class="form-control"> <i
+						class="zmdi zmdi-lock"></i>
 				</div>
-				<div class="clearfix"></div>
-			</div>
-		<div >
-		 <h3 class="head">로그인</h3>
-		 <div class>
-		<form action="/member/login" method="post">
-			<div id="detail_table">
-						<TABLE>
-			<TBODY>
-				<TR class="dot_line">
-					<TD class="fixed_join">아이디</TD>
-					<TD><input name="member_id" type="text" size="20" /></TD>
-				</TR>
-				<TR class="solid_line">
-					<TD class="fixed_join">비밀번호</TD>
-					<TD><input name="member_pw" type="password" size="20" /></TD>
-				</TR>
-			</TBODY>
-		</TABLE>
-		<br><br>
-		<INPUT	type="submit" value="로그인"> 
-		<INPUT type="button" value="초기화">
-			</div>
-		</form>
-		
-				<Br><br>
-		   <a href="#">아이디 찾기</a>  | 
-		   <a href="#">비밀번호 찾기</a> | 
-		   <a href="/member/join">회원가입</a>    | 
-		   <a href="#">고객 센터</a>
-<div class="footer">
-		<h6>Disclaimer : </h6>
-		<p class="claim">This site is for Team project from EZEN Computer Academy Sangbong</p>
-		<a href="example@mail.com">please connect us example@mail.com for all the problems</a>
-		<div class="copyright">
-			<p> Template by  <a href="http://w3layouts.com">  W3layouts</a></p>
+
+
+
+
+				<button type="button" class="loginButton">
+					<span>로그인 하기</span> <i class="zmdi zmdi-arrow-right"></i>
+				</button>
+				<button type="button" class="moveRegister" style="margin-top: 10px;">
+					<span>회원가입 하기</span> <i class="zmdi zmdi-arrow-right"></i>
+				</button>
+
+				<button type="button" class="moveMain" style="margin-top: 10px;">
+					<span>메인 홈페이지</span> <i class="zmdi zmdi-arrow-right"></i>
+				</button>
+			</form>
+
 		</div>
-	</div>	
 	</div>
-	</div>
-	<div class="clearfix"></div>
+	<script src="/resources/cgv/js/login.js"></script>
+
 </body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

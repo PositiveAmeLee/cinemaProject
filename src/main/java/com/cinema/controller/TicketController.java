@@ -3,6 +3,9 @@ package com.cinema.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cinema.domain.MemberVO;
 import com.cinema.domain.MovieVO;
 import com.cinema.domain.TicketVO;
 import com.cinema.service.MovieService;
@@ -63,35 +67,31 @@ public class TicketController {
 		return gson;
 	}
 	
-//	@GetMapping()
-	public String get(Long ticketNO,Model model) {
-		log.info("ticket get..........: "+ticketNO);
-		TicketVO ticketVO = ticketService.get(ticketNO);
-		model.addAttribute("ticket",ticketVO);
-		log.info("ticket get result ..........: "+ticketVO);
-		return "checkTicket";
-	}
-	
-// @GetMApping()
-	public String getAll(Long memberNO,Model model) {
+
+    @GetMapping("/Allticket")
+	public String getAll(HttpServletRequest request,Model model,RedirectAttributes rttr) {
+    	HttpSession session = request.getSession();
+    	MemberVO memberVO=(MemberVO)session.getAttribute("memberVO");
+    	Long memberNO = (long) memberVO.getMember_no();
 		log.info("ticket getAll..........memberNO: "+memberNO);
 		List<TicketVO> allTicketLists = ticketService.getAll(memberNO);
-		model.addAttribute("tickets",allTicketLists);
-		return "TicketLists";
+		model.addAttribute("ticketList",allTicketLists);
+		rttr.addFlashAttribute("meesage", "예약이 완료되었습니다.");
+		return "/ticket/ticketList";
 	}
 	
-    @PostMapping(value="ticketing")
+    @PostMapping(value="/ticketing")
 	public String ticketing(TicketVO ticketVO) {
 		log.info("ticketing.....ticketVO: "+ticketVO);
 		int result = ticketService.ticketing(ticketVO);
-    	return "redirect:/";
+    	return "redirect:/ticket/Allticket";
 	}
 	
-// @PostMapping()
+    @PostMapping(value="/cancle")
 	public String cancel(Long ticketNO,RedirectAttributes rttr) {
 		log.info("ticketCancel..........: "+ticketNO);
 		int result = ticketService.cancel(ticketNO);
-		rttr.addAttribute("result","예매가 취소되었습니다.");
-		return ""; // getAll 메소드 호출하도록 만들기.
+		rttr.addFlashAttribute("message","예매가 취소되었습니다.");
+		return "redirect:/ticket/Allticket";
 	}
 }

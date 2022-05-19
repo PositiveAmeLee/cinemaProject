@@ -5,6 +5,18 @@
 <html>
 <head>
 <title>More than just movie, Ezen Cinema</title>
+
+
+
+<c:if test="${not empty message}">
+	<script>
+		var message = "${message}";
+		alert(message);
+	</script>
+</c:if>
+
+
+
 <link href="/resources/css/bootstrap.css" rel='stylesheet'
 	type='text/css' />
 <!-- Custom Theme files -->
@@ -21,7 +33,17 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
 
 </script>
 <!--webfont-->
@@ -33,6 +55,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- header-section-starts -->
 	<div class="full">
 		<div class="menu">
+			<ul>
+
+				<c:choose>
+					<c:when test="${isLogOn==true and not empty memberVO }">
+						<li><a href="/member/logout" style="color: #dfb636;">로그아웃</a></li>
+						<li><a href="/mypage/mypage" style="color: #dfb636;">마이페이지</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/member/login" style="color: #dfb636;">로그인 </a></li>
+						<li><a href="/member/join" style="color: #dfb636;">회원가입</a></li>
+					</c:otherwise>
+				</c:choose>
+				<c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">
+					<li class="no_line"><a
+						href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+				</c:if>
+			</ul>
+
+
 			<ul>
 				<li><a class="active" href="/"><i class="home"></i></a></li>
 				<li><a href="videos.html"><div class="video">
@@ -53,24 +94,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="header">
 				<div class="top-header">
 					<div class="logo">
-						<a href="index.html"><img src="/resources/images/logo.png"
-							alt="" /></a>
+						<a href="/"><img src="/resources/images/logo.png" alt="" /></a>
 						<p>Ezen Cinema</p>
 					</div>
-					<ul>
-						<c:choose>
-							<c:when test="${isLogOn==true and not empty memberVO }">
-								<li><a href="/member/logout">로그아웃</a></li>
-								<li><a href="/mypage/mypage">마이페이지</a></li>
-							</c:when>
-							<c:otherwise>
-								<li><a href="/member/login">로그인</a></li>
-								<li><a href="/member/join">회원가입</a></li>
-							</c:otherwise>
-						</c:choose>
-						<c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">
-							<li class="no_line"><a
-								href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
-						</c:if>
-
-					</ul>

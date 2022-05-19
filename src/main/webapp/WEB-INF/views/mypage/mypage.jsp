@@ -44,8 +44,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		 <div class="contact_info">
 			 <ul>개인정보</ul>
 			 <li><a href="/member/modify">개인정보수정</a></li>
-			 <li><a href="/member/deleteMember">회원탈퇴</a></li>
-			 <li><a href="#">내가 예매한 티켓 보기</a>
+			 <li><a href="/ticket/Allticket">내가 예매한 티켓 보기</a>
 	 </div>
+	 <br>
+	 <br>
+	 <br>
+	 <form action="/member/deleteMember" method="post">
+	 <input type="submit" value="회원탈퇴">
+	 </form>
 </div>
 	<%@ include file="../common/footer.jsp"%>

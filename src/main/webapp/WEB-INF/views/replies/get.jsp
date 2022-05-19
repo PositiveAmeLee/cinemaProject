@@ -13,6 +13,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <%@ include file="../common/header.jsp"%>
 
+<c:if test="${reply.memberNO != memberVO.member_no}">
+	
+	<script>
+	
+	alert("리뷰를 작성한 본인만 작성할 수 있습니다.")
+	location.href = "/replies/reply?movieNO="+${reply.movieNO}
+	
+	</script>
+
+</c:if>
+
+
 <div>
 	<div class="reply-section" height="50%" width="50%" valign="middle" align="center">
 		<div class="reply-section-head" >
@@ -38,12 +50,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<option value="9">9.Best</option>
 					<option value="10">10.Best You've never seen before</option>
 				</select> <input type="hidden" value="${reply.movieNO}" name="movieNO">
-				<input type="hidden" value="1" name="memberNO"> <input
+				<input type="hidden" value="${memberVO.member_no}" name="memberNO"> <input
 					type="hidden" value="${reply.replyNO}" name = "replyNO"> <input type="text"
 					class="text" value="title" name="title"
 					placeholder="${reply.title}" height="50%" width="50%" valign="middle" align="center">
 				<textarea name="content" placeholder="${reply.content}" height="50%" width="50%" valign="middle" align="center"></textarea>
-				<input type="submit" value="SUBMIT COMMENT">
+				<input type="submit" value="수정하기">
 			</form>
 
 			<form action="/replies/delete" method="post">

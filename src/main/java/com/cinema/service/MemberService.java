@@ -1,5 +1,8 @@
 package com.cinema.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.cinema.domain.MemberVO;
 
 public interface MemberService {
@@ -15,5 +18,9 @@ public interface MemberService {
 
 	//회원정보수정
 	public int memberModify(MemberVO memberVO);
+
+	public List<MemberVO> findId(Map<String,String> emailMap);
+
+	public int delete(int member_no);
 	
 }

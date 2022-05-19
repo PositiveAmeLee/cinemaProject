@@ -1,5 +1,8 @@
 package com.cinema.service;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +33,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int memberModify(MemberVO memberVO) {
 		return memberMapper.memberModify(memberVO);
+	}
+
+	@Override
+	public List<MemberVO> findId(Map<String,String> emailMap) {
+		return memberMapper.findId(emailMap);
+	}
+
+	@Override
+	public int delete(int member_no) {
+		return memberMapper.delete(member_no);
 	}
 }
