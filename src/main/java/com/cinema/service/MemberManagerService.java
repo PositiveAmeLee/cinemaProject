@@ -7,16 +7,12 @@ import com.cinema.domain.MemberManagerDto;
 
 public interface MemberManagerService {
 	
-	
-
-	public List<MemberManagerDto> loadMemberList(Criteria cri);
+	public List<MemberManagerDto> memberList(Criteria cri);
 	
 	public int memberGetTotal();
 	
-	public List<MemberManagerDto> loadMemberDetail(long memberNo);
+	public List<MemberManagerDto> memberGet(long memberNo);
 	
-	public boolean modifyMemberDetail(MemberManagerDto memberManagerDto);
-	
-	public List<MemberManagerDto> searchMember(Criteria cri);
+	public boolean memberModify(MemberManagerDto memberManagerDto);
 	
 }

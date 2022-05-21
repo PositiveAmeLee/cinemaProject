@@ -9,14 +9,24 @@ import com.cinema.domain.Criteria;
 import com.cinema.domain.MemberManagerDto;
 import com.cinema.mapper.MemberManagerMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberManagerServiceImpl implements MemberManagerService {
-	
-	@Autowired
+
+	@Autowired(required = false)
 	MemberManagerMapper memberManagerMapper;
+	
+	@Autowired(required = false)
+	MemberManagerDto memberManagerDto;
 
 	@Override
-	public List<MemberManagerDto> loadMemberList(Criteria cri) {
+	public List<MemberManagerDto> memberList(Criteria cri) {
 		return memberManagerMapper.memberGetListWithPaging(cri);
 	}
 
@@ -26,18 +36,13 @@ public class MemberManagerServiceImpl implements MemberManagerService {
 	}
 
 	@Override
-	public List<MemberManagerDto> loadMemberDetail(long memberNo) {
-		return memberManagerMapper.memberDetail(memberNo);
+	public List<MemberManagerDto> memberGet(long memberNo) {
+		return memberManagerMapper.memberGet(memberNo);
 	}
 
 	@Override
-	public boolean modifyMemberDetail(MemberManagerDto memberManagerDto) {
-		return memberManagerMapper.memberDetailModify(memberManagerDto);
-	}
-
-	@Override
-	public List<MemberManagerDto> searchMember(Criteria cri) {
-		return memberManagerMapper.memberSearch(cri);
+	public boolean memberModify(MemberManagerDto memberManagerDto) {
+		return memberManagerMapper.memberModify(memberManagerDto);
 	}
 
 }

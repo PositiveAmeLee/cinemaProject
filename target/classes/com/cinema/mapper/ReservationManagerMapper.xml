@@ -4,41 +4,58 @@
   "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cinema.mapper.ReservationManagerMapper">
 
-	 
-  <select id="reservationList" resultType="com.cinema.domain.ReservationManagerDto">
-  <![CDATA[
-  SELECT * FROM MANAGER_RESERVATION
-  ]]>
-  </select>
-  
-  <select id="reservationGetTotalCount">
-  <![CDATA[
-  SELECT COUNT(*) FROM MANAGER_RESERVATION WHERE RESNO>0
-  ]]>
-  </select>
-  
-  <select id="reservationDetail" resultType="com.cinema.domain.ReservationManagerDto">
-    <![CDATA[
-    SELECT * FROM MANAGER_RESERVATION WHERE RESNO=#{resNo}  
-    ]]>
-  </select>
+<select id="reservationManagerList"
+		resultType="com.cinema.domain.ReservationManagerResultMap">
+ 	 	<![CDATA[
+ 	 	SELECT RESNO,MEMBERNO,MOVIENO,MOVIETITLE,MOVIEETITLE,MOVIETYPE,MOVIEGRADE,RESCINEMA,RESDATE,RESTHEATER,RESPERSON,RESTOTAL,
+ 	 	RESSEATNO,MEMBERID,MEMBERNAME,MEMBERNICKNAME FROM (SELECT /*+INDEX_DESC(MANAGER_RESERVATION MANAGER_RESERVATION_PK)*/ 
+ 	 	ROWNUM RN, mr.RESNO, mr.MEMBERNO, mr.MOVIENO, mr.MOVIETITLE, mr.MOVIEETITLE, mr.MOVIETYPE, mr.MOVIEGRADE, mr.RESCINEMA, mr.RESDATE, mr.RESTHEATER, 
+ 		 mr.RESPERSON, mr.RESTOTAL, mr.RESSEATNO, mm.MEMBERID, mm.MEMBERNAME, mm.MEMBERNICKNAME FROM MANAGER_RESERVATION mr, MANAGER_MEMBER mm 
+  		WHERE 
+  		]]>
+		<trim prefix=" (" suffix=") AND ">
+			<foreach item="type" collection="typeArr">
+				<choose>
+					<when test="type=='M'.toString()">
+						mr.MEMBERNO IN (SELECT MEMBERNO FROM MANAGER_MEMBER
+						WHERE MEMBERID=#{keyword} AND MR.MEMBERNO=MM.MEMBERNO)
+					</when>
+					<when test="type=='N'.toString()">
+						mr.MEMBERNO IN (SELECT MEMBERNO FROM MANAGER_MEMBER
+						WHERE MEMBERNAME=#{keyword} AND MR.MEMBERNO=MM.MEMBERNO)
+					</when>
+				</choose>
+			</foreach>
+		</trim>
+		<![CDATA[
+		ROWNUM <= (#{pageNum}*#{amount}) AND mm.MEMBERNO = mr.MEMBERNO) WHERE RN > (#{pageNum}-1)*#{amount}
+		]]>
+	</select>
 
-  <update id="reservationDetailModify">
-  <![CDATA[
-  UPDATE MANAGER_RESERVATION SET MOVIENO=#{movieNo}, RESTHEATER=#{resTheater}, RESCINEMA=#{resCinema}, 
-  RESDATE=#{resDate}, RESPERSON=#{resPerson}, RESSEATNO=#{resSeatNo}, RESTOTAL=#{resTotal} WHERE MEMBERNO=#{memberNo}
-  ]]>
-  </update>
+	<select id="reservationManagerGetTotalCount" resultType="int">
+  		<![CDATA[
+  		SELECT COUNT(*) FROM MANAGER_RESERVATION WHERE RESNO>0
+  		]]>
+	</select>
 
-  <delete id="reservationManagerDelete">
-  <![CDATA[
-  DELETE FROM MANAGER_RESERVATION WHERE RESNO=#{resNo}
-  ]]>
-  </delete>
+	<select id="reservationManagerGet"
+		resultType="com.cinema.domain.ReservationManagerResultMap">
+   		 <![CDATA[
+    	SELECT RESNO,mr.MEMBERNO,mr.MOVIENO,mr.MOVIETITLE,mr.MOVIEETITLE,mr.MOVIETYPE,mr.MOVIEGRADE,mr.RESCINEMA,
+    	mr.RESDATE,mr.RESTHEATER,mr.RESPERSON,mr.RESTOTAL,mr.RESSEATNO,mm.MEMBERID,mm.MEMBERNAME,mm.MEMBERNICKNAME FROM MANAGER_MEMBER mm , MANAGER_RESERVATION mr WHERE RESNO=#{resNo} AND mr.MEMBERNO = mm.MEMBERNO
+    	]]>
+	</select>
 
-  <select id="reservationManagerSearch" resultType="com.cinema.domain.ReservationManagerDto">
-  SELECT MR.* FROM MANAGER_RESERVATION MR, MANAGER_MEMBER MM WHERE MM.MEMBERNO IN 
-  (SELECT MEMBERNO FROM MANAGER_MEMBER WHERE(MEMBERID=#{keyword}) AND MR.MEMBERNO=MM.MEMBERNO);
-  </select>
+	<update id="reservationManagerModify">
+  		<![CDATA[
+  		UPDATE MANAGER_RESERVATION SET MOVIENO=#{movieNo}, RESTHEATER=#{resTheater}, RESCINEMA=#{resCinema}, 
+  		RESDATE=#{resDate}, RESPERSON=#{resPerson}, RESSEATNO=#{resSeatNo}, RESTOTAL=#{resTotal} WHERE MEMBERNO=#{memberNo}
+  		]]>
+	</update>
 
+	<delete id="reservationManagerDelete">
+ 		 <![CDATA[
+ 		 DELETE FROM MANAGER_RESERVATION WHERE RESNO=#{resNo}
+  		]]>
+	</delete>
 </mapper>

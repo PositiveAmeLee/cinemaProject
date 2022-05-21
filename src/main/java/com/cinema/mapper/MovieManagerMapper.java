@@ -7,17 +7,16 @@ import com.cinema.domain.MovieManagerDto;
 
 public interface MovieManagerMapper {
 	
-	public List<MovieManagerDto> movieList();
+	public List<MovieManagerDto> movieManagerList(Criteria cri);
 	
-	public int movieGetTotalCount();
+	public int movieManagerGetTotalCount();
 	
-	public boolean movieRegister(MovieManagerDto movieManagerDto);
+	public boolean movieManagerRegister(MovieManagerDto movieManagerDto);
 
-	public List<MovieManagerDto> movieDetail(long movieNo);
+	public List<MovieManagerDto> movieManagerGet(long movieNo);
 	
-	public boolean movieDetailModify(MovieManagerDto movieManagerDto);
+	public boolean movieManagerModify(MovieManagerDto movieManagerDto);
 	
-	public boolean movieDelete(long movieNo);
+	public boolean movieManagerDelete(long movieNo);
 	
-	public List<MovieManagerDto> movieSearch(Criteria cri);
 }

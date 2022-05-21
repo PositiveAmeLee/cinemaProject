@@ -5,40 +5,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cinema.domain.CommentManagerDto;
+import com.cinema.domain.CommentManagerResultMap;
 import com.cinema.domain.Criteria;
 import com.cinema.mapper.CommentManagerMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
+@AllArgsConstructor
+@NoArgsConstructor
 public class CommentManagerServiceImpl implements CommentManagerService {
 	
-	CommentManagerDto commentManagerDto;
-	
-	@Autowired
-	CommentManagerMapper commentManagerMapper;
+	@Autowired(required = false)
+	private CommentManagerMapper commentManagerMapper;
 	
 	@Override
-	public List<CommentManagerDto> loadMemberCommentList(long memberNo) {
-		return commentManagerMapper.commentList(memberNo);
+	public List<CommentManagerResultMap> commentManagerList(Criteria cri) {
+		return commentManagerMapper.commentManagerList(cri);
 	}
 	
-	public int commentGetTotalCount() {
-		return commentManagerMapper.commentGetTotalCount();
+	public int commentManagerGetTotalCount() {
+		return commentManagerMapper.commentManagerGetTotalCount();
 	}
 
 	@Override
-	public List<CommentManagerDto> loadMemberComentDetail(long commentNo) {
-		return commentManagerMapper.commentDetail(commentNo);
-	}
-
-	@Override
-	public boolean deleteComment(long commentNo) {
-		return commentManagerMapper.commentDelete(commentNo);
-	}
-
-	@Override
-	public List<CommentManagerDto> searchComment(Criteria cri) {
-		return commentManagerMapper.commentSearch(cri);
+	public boolean commentManagerDelete(long commentNo) {
+		return commentManagerMapper.commentManagerDelete(commentNo);
 	}
 
 }

@@ -94,7 +94,9 @@ public class MemberController {
 				rttr.addFlashAttribute("message", "회원 탈퇴가 진행된 계정입니다. 다시 확인 해 주십시오.");
 				session.invalidate();
 			}
-			
+			if(loginedMemberVO.getMember_id().equals("admin")) {
+				url="redirect:/manager";
+			}
 		} else {
 			// 실패시
 			String message= "로그인에 실패했습니다. 아이디와 비밀번호를 다시 확인 후 시도해주십시오.";

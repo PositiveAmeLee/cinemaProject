@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.cinema.mapper.NoticeManagerMapper">
+
+	<insert id="noticeManagerRegister">
+	<![CDATA[
+		INSERT INTO MANAGER_NOTICE (NOTICENO, NOTICETITLE,
+		NOTICECONTENTS, NOTICECREATETIME)
+		VALUES(sequence_notice.nextval,
+		#{noticeTitle}, #{noticeContents}, sysdate)
+	]]>
+	</insert>
+
+	<select id="noticeManagerList"
+		resultType="com.cinema.domain.NoticeManagerDto">
+	<![CDATA[
+	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS, NOTICECREATETIME FROM (SELECT /*+INDEX_DESC(MANAGER_NOTICE MANAGER_NOTICE_PK)*/ ROWNUM RN, 
+	NOTICENO, NOTICETITLE, NOTICECONTENTS, NOTICECREATETIME 
+	FROM MANAGER_NOTICE WHERE
+	]]>
+		<trim prefix=" (" suffix=") AND ">
+			<foreach item="type" collection="typeArr">
+				<choose>
+					<when test="type=='T'.toString()">
+						NOTICETITLE LIKE
+						'%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</foreach>
+		</trim>
+	<![CDATA[
+	ROWNUM <= (#{pageNum}*#{amount})) WHERE (RN > (#{pageNum}-1)*#{amount})
+	]]>
+	</select>
+
+	<select id="noticeManagerGetTotalCount" resultType="int">
+	<![CDATA[
+	SELECT COUNT(*) FROM MANAGER_NOTICE WHERE NOTICENO>0
+	]]>
+	</select>
+	
+	<select id="noticeManagerGet"
+		resultType="com.cinema.domain.NoticeManagerDto">
+	<![CDATA[
+	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS FROM MANAGER_NOTICE WHERE NOTICENO=#{noticeNo}
+	]]>
+	</select>
+
+	<update id="noticeManagerModify">
+	<![CDATA[	
+		UPDATE MANAGER_NOTICE SET NOTICETITLE=#{noticeTitle}, NOTICECONTENTS=#{noticeContents}, NOTICEUPDATETIME=sysdate WHERE NOTICENO=#{noticeNo}
+	]]>
+	</update>
+
+	<delete id="noticeManagerDelete">
+	<![CDATA[
+		DELETE FROM MANAGER_NOTICE WHERE
+		NOTICENO=#{noticeNo}
+	]]>
+	</delete>
+
+</mapper>
+

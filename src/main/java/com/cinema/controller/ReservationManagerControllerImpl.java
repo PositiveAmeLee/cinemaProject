@@ -1,25 +1,30 @@
+
 package com.cinema.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cinema.domain.Criteria;
 import com.cinema.domain.PageDto;
-import com.cinema.domain.ReservationManagerDto;
+import com.cinema.domain.ReservationManagerResultMap;
 import com.cinema.service.ReservationManagerService;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
 @RequestMapping("/reservationManager/*")
 @AllArgsConstructor
+@NoArgsConstructor
 public class ReservationManagerControllerImpl implements ReservationManagerController {
 
 	@Autowired
@@ -27,46 +32,42 @@ public class ReservationManagerControllerImpl implements ReservationManagerContr
 
 	@Override
 	@GetMapping("/list")
-	public void reservationList(Model model, Criteria cri) {
-		model.addAttribute("list", reservationManagerService.reservationList());
-		model.addAttribute("pageMaker", new PageDto(cri, reservationManagerService.reservationGetTotalCount()));
+	public void reservationManagerList(Model model, Criteria cri) {
+		model.addAttribute("reservationList", reservationManagerService.reservationManagerList(cri));
+		model.addAttribute("pageMaker", new PageDto(cri, reservationManagerService.reservationManagerGetTotalCount()));
 	}
 
 	@Override
-	@GetMapping("/reservation")
-	public void reservationDetail(long resNo, Model model, Criteria cri) {
-		model.addAttribute("comment", reservationManagerService.reservationDetail(resNo));
+
+	@GetMapping({ "/reservation", "modify" })
+	public void reservationManagerGet(@RequestParam("resNo") long resNo, Model model) {
+		model.addAttribute("reservation", reservationManagerService.reservationManagerGet(resNo));
 	}
 
 	@Override
+
 	@PostMapping("/modify")
-	public String reservationDetailModify(ReservationManagerDto reservationManagerDto, Criteria cri,
+	public String reservationManagerModify(ReservationManagerResultMap reservationManagerResultMap, @ModelAttribute("cri") Criteria cri,
 			RedirectAttributes rttr) {
-		if (reservationManagerService.reservationDetailModify(reservationManagerDto)) {
+		if (reservationManagerService.reservationManagerManagerModify(reservationManagerResultMap)) {
 			rttr.addFlashAttribute("result", "success");
 		} else
 			rttr.addFlashAttribute("result", "fail");
 		rttr.addAttribute("p", cri.getPageNum());
-		return null;
+		return "redirect:/reservationManager/list";
 	}
 
 	@Override
 	@PostMapping("/delete")
-	public String reservationDelete(long resNo, Criteria cri, RedirectAttributes rttr) {
-		return null;
-	}
-
-	@Override
-	@GetMapping("/search")
-	public String reservationSearch(Criteria cri, RedirectAttributes rttr) {
-		ReservationManagerDto reservationManagerDto;
-		reservationManagerDto = (ReservationManagerDto) reservationManagerService.reservationManagerSearch(cri);
-		if (reservationManagerDto != null) {
+	public String reservationManagerDelete(@RequestParam("resNo") long resNo, @ModelAttribute("cri") Criteria cri,
+			RedirectAttributes rttr) {
+		boolean result = reservationManagerService.reservationManagerManagerDelete(resNo);
+		if (result == true) {
 			rttr.addFlashAttribute("result", "success");
-			rttr.addAttribute("search", reservationManagerDto);
-		} else rttr.addFlashAttribute("result", "fail");
+		} else
+			rttr.addFlashAttribute("result", "fail");
 		rttr.addAttribute("p", cri.getPageNum());
-		return null;
+		return "redirect:/reservationManager/list";
 	}
 
 }

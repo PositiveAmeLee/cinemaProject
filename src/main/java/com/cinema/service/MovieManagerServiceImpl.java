@@ -9,45 +9,48 @@ import com.cinema.domain.Criteria;
 import com.cinema.domain.MovieManagerDto;
 import com.cinema.mapper.MovieManagerMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
+@AllArgsConstructor
+@NoArgsConstructor
 public class MovieManagerServiceImpl implements MovieManagerService {
 
-	MovieManagerDto movieManagerDto;
+	@Autowired(required = false)
+	private MovieManagerDto movieManagerDto;
 	
-	@Autowired
-	MovieManagerMapper movieManagerMapper;
+	@Autowired(required = false)
+	private MovieManagerMapper movieManagerMapper;
 	
 	@Override
-	public List<MovieManagerDto> loadMovieList() {
-		return movieManagerMapper.movieList();
+	public List<MovieManagerDto> movieManagerList(Criteria cri) {
+		return movieManagerMapper.movieManagerList(cri);
 	}
 	
-	public int movieGetTotalCount() {
-		return movieManagerMapper.movieGetTotalCount();
+	public int movieManagerGetTotalCount() {
+		return movieManagerMapper.movieManagerGetTotalCount();
 	}
 	
-	public boolean movieRegister(MovieManagerDto movieManagerDto) {
-		return movieManagerMapper.movieRegister(movieManagerDto);
+	public boolean movieManagerRegister(MovieManagerDto movieManagerDto) {
+		return movieManagerMapper.movieManagerRegister(movieManagerDto);
 	}
 
 	@Override
-	public List<MovieManagerDto> loadMovieDetail(long movieNo) {
-		return movieManagerMapper.movieDetail(movieNo);
+	public List<MovieManagerDto> movieManagerGet(long movieNo) {
+		return movieManagerMapper.movieManagerGet(movieNo);
 	}
 
 	@Override
-	public boolean modifyMovieDetail(MovieManagerDto movieManagerDto) {
-		return movieManagerMapper.movieDetailModify(movieManagerDto);
+	public boolean movieManagerModify(MovieManagerDto movieManagerDto) {
+		return movieManagerMapper.movieManagerModify(movieManagerDto);
 	}
 
 	@Override
-	public boolean deleteMovie(long movieNo) {
-		return movieManagerMapper.movieDelete(movieNo);
-	}
-
-	@Override
-	public List<MovieManagerDto> searchMovie(Criteria cri) {
-		return movieManagerMapper.movieSearch(cri);
+	public boolean movieManagerDelete(long movieNo) {
+		return movieManagerMapper.movieManagerDelete(movieNo);
 	}
 
 }

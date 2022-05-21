@@ -1,53 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cinema.mapper.MovieManagerMapper">
-<select id="movieList"
-	resultType="com.cinema.domain.MovieManagerDto">
-	SELECT * FROM MANAGER_MOVIE
-</select>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.cinema.mapper.MovieManagerMapper">
 
-<select id="movieGetTotalCount">
+	<select id="movieManagerList"
+		resultType="com.cinema.domain.MovieManagerDto">
+		<![CDATA[
+		SELECT * FROM (SELECT /*+INDEX_DESC(MANAGER_MOVIE MANAGER_MOVIENO_PK)*/
+		ROWNUM RN, MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE, MOVIEGENRE, MOVIEGRADE, MOVIEOPENDATE, MOVIECONTENTS, MOVIERESRATING, 
+		COMMENTSTARRATING, MOVIEIMAGE, MOVIESTATUS FROM MANAGER_MOVIE WHERE
+	]]>
+		<trim prefix=" (" suffix=") AND ">
+			<foreach item='type' collection="typeArr">
+				<choose>
+					<when test="type=='M'.toString()">
+						MOVIETITLE LIKE
+						'%'||#{keyword}||'%' OR MOVIEETITLE LIKE
+						'%'||#{keyword}||'%'
+					</when>
+				</choose>
+			</foreach>
+		</trim>
+		<![CDATA[
+		ROWNUM <= (#{pageNum}*#{amount})) WHERE (RN > (#{pageNum}-1)*#{amount})
+		]]>
+	</select>
+
+	<select id="movieManagerGetTotalCount" resultType="int">
 	<![CDATA[
 	SELECT COUNT(*) FROM MANAGER_MOVIE WHERE MOVIENO>0	
 	]]>
-</select>
+	</select>
 
-<insert id="movieRegister">
-	INSERT INTO MANAGER_MOVIE(MOVIENO, MOVIETITLE,
-	MOVIEETITLE, MOVIEDIRECTER,
-	MOVIEACTOR, MOVIETYPE,
-	MOVIEGENRE,
-	MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE)
-	VALUES(SEQUENCE_MOVIE.NEXTVAL,#{movieTitle},#{movieEtitle},#{movieDirector},#{movieActor},#{movieType},#{movieGenre},#{movieGrade},#{movieContents},#{movieOpendate})
-</insert>
+	<insert id="movieManagerRegister">
+		INSERT INTO MANAGER_MOVIE(MOVIENO,
+		MOVIETITLE,MOVIEETITLE, MOVIEDIRECTOR,MOVIEACTOR, MOVIETYPE,
+		MOVIEGENRE,MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE, MOVIESTATUS,
+		MOVIEIMAGE, MOVIEPLAYTIME)
+		VALUES(SEQUENCE_MOVIE.NEXTVAL,#{movieTitle},#{movieEtitle},#{movieDirector},#{movieActor},#{movieType},
+		#{movieGenre},#{movieGrade},#{movieContents},#{movieOpendate},#{movieStatus},#{movieImage},#{moviePlaytime})
+	</insert>
 
-<select id="movieDetail"
-	resultType="com.cinema.domain.MovieManagerDto">
+	<select id="movieManagerGet"
+		resultType="com.cinema.domain.MovieManagerDto">
 	<![CDATA[
-	SELECT * FROM MANAGER_MOVIE WHERE MOVIENO=#{movieNo}
+	SELECT MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE,
+		MOVIEGENRE, MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE, MOVIESTATUS, MOVIEIMAGE, MOVIEPLAYTIME FROM MANAGER_MOVIE WHERE MOVIENO=#{movieNo}
 	]]>
-</select>
+	</select>
 
-<update id="movieDetailModify">
+	<update id="movieManagerModify">
 	<![CDATA[
-	UPDATE MANASER_MOVIE SET MOVIETITLE=#{movieTitle}, MOVIEETITLE=#{movieEtitle}, MOVIEDIRECTER=#{movieDirecter}, MOVIEACTOR=#{movieActor}, MOVIETYPE=#{movieType}, 
-	MOVIEGENRE=#{movieGenre}, MOVIEGRADE=#{movieGrade}, MOVIECONTENTS=#{movieContents}, MOVIEOPENDATE=#{movieOpendate} WHERE MOVIENO=#{movieNo}
+	UPDATE MANAGER_MOVIE SET MOVIETITLE=#{movieTitle}, MOVIEETITLE=#{movieEtitle}, MOVIEDIRECTOR=#{movieDirector}, MOVIEACTOR=#{movieActor}, MOVIETYPE=#{movieType}, 
+	MOVIEGENRE=#{movieGenre}, MOVIEGRADE=#{movieGrade}, MOVIECONTENTS=#{movieContents}, MOVIEOPENDATE=#{movieOpendate}, MOVIESTATUS=#{movieStatus}, MOVIEIMAGE=#{movieImage}, MOVIEPLAYTIME=#{moviePlaytime} WHERE MOVIENO=#{movieNo}
 	]]>
-</update>
+	</update>
 
-<delete id="movieDelete">
+	<delete id="movieManagerDelete">
 	<![CDATA[
-	DELETE FROM MANAVER_MOVIE WHERE MOVIENO=#{movieNo}
+	DELETE FROM MANAGER_MOVIE WHERE MOVIENO=#{movieNo}
 	]]>
-</delete>
-
-<select id="movieSearch"
-	resultType="com.cinema.domain.MovieManagerDto">
-	SELECT * FROM MANAGER_MOVIE WHERE
-	(MOVIETITLE LIKE
-	'%#{keyword}%' OR MOVIEETITLE LIKE
-	'%'||#{keyword}||'%')
-</select>
+	</delete>
 </mapper>

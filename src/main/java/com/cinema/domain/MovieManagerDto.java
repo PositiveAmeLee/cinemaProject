@@ -2,7 +2,7 @@ package com.cinema.domain;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
 public class MovieManagerDto {
 
 	private long movieNo;
@@ -23,7 +22,12 @@ public class MovieManagerDto {
 	private String movieGenre;
 	private String movieGrade;
 	private String movieContents;
+	private String movieImage;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date movieOpendate;
+	private String moviePlaytime;
 	private int movieResRating;
 	private int commentStarRating;
+	private String movieStatus;
+	
 }

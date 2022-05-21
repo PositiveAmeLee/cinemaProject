@@ -6,45 +6,48 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.ReservationManagerDto;
-import com.cinema.mapper.ReservasionManagerMapper;
+import com.cinema.domain.ReservationManagerResultMap;
+import com.cinema.mapper.ReservationManagerMapper;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Service
+@AllArgsConstructor
+@NoArgsConstructor
 public class ReservationManagerServiceImpl implements ReservationManagerService {
 
-	ReservationManagerDto reservationManagerDto;
-	
+	@Autowired(required = false)
+	ReservationManagerResultMap reservationManagerResultMap;
+
 	@Autowired
-	ReservasionManagerMapper reservationManagerMapper;
-	
+	ReservationManagerMapper reservationManagerMapper;
+
 	@Override
-	public List<ReservationManagerDto> reservationList() {
-		return reservationManagerMapper.reservationList();
+	public List<ReservationManagerResultMap> reservationManagerList(Criteria cri) {
+		return reservationManagerMapper.reservationManagerList(cri);
 	}
 
 	@Override
-	public int reservationGetTotalCount() {
-		return reservationManagerMapper.reservationGetTotalCount();
+	public int reservationManagerGetTotalCount() {
+		return reservationManagerMapper.reservationManagerGetTotalCount();
 	}
 
 	@Override
-	public List<ReservationManagerDto> reservationDetail(long resNo) {
-		return reservationManagerMapper.reservationDetail(resNo);
+	public List<ReservationManagerResultMap> reservationManagerGet(long resNo) {
+		return reservationManagerMapper.reservationManagerGet(resNo);
 	}
 
 	@Override
-	public boolean reservationDetailModify(ReservationManagerDto reservationManagerDto) {
-		return reservationManagerMapper.reservationDetailModify(reservationManagerDto);
+	public boolean reservationManagerManagerModify(ReservationManagerResultMap reservationManagerResultMap) {
+		return reservationManagerMapper.reservationManagerModify(reservationManagerResultMap);
 	}
 
 	@Override
-	public boolean reservationManagerDelete(long resNo) {
+	public boolean reservationManagerManagerDelete(long resNo) {
 		return reservationManagerMapper.reservationManagerDelete(resNo);
-	}
-
-	@Override
-	public List<ReservationManagerDto> reservationManagerSearch(Criteria cri) {
-		return reservationManagerMapper.reservationManagerSearch(cri);
 	}
 
 }

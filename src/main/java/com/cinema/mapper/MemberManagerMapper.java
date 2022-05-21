@@ -11,10 +11,8 @@ public interface MemberManagerMapper {
 	
 	public int memberGetTotalCount();
 	
-	public List<MemberManagerDto> memberDetail(long memberNo);
+	public List<MemberManagerDto> memberGet(long memberNo);
 	
-	public boolean memberDetailModify(MemberManagerDto memberManagerDto);
-	
-	public List<MemberManagerDto> memberSearch(Criteria cri);
+	public boolean memberModify(MemberManagerDto memberManagerDto);
 	
 }

@@ -1,65 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cinema.mapper.CommentManagerMapper">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.cinema.mapper.CommentManagerMapper">
 
-	
-	<select id="commentList"
-		resultType="com.cinema.domain.CommentManagerDto">
+	<select id="commentManagerList"
+		resultType="com.cinema.domain.CommentManagerResultMap">
 	<![CDATA[
-	SELECT * FROM (SELECT /*+INDEX_DESC(MANAGER_MEMBER MANAGER_COMMON_PK)*/ ROWNUM RN, MEMBERNO, MOVIENO, COMMENTNO, COMMENTTITLE, COMMENTCONTENTS 
-	FROM MANAGER_COMMENT WHERE (MEMBERNO=#{memberNo} AND ROWNUM<=(#{pageNum}*10)))WHERE RN>(#{pageNum}-1)
+	SELECT MEMBERNO, MOVIENO, COMMENTNO, COMMENTCONTENTS, COMMENTCREATETIME, COMMENTUPDATETIME, COMMENTSTARRATING, MOVIETITLE, MEMBERNAME, MEMBERNICKNAME, MEMBERID
+	FROM (SELECT /*+INDEX_DESC(MANAGER_MEMBER MANAGER_COMMENT_PK)*/ ROWNUM RN, MC.MEMBERNO, MC.MOVIENO, MC.COMMENTNO, MC.COMMENTCONTENTS, MC.COMMENTCREATETIME, 
+	MC.COMMENTUPDATETIME, MC.COMMENTSTARRATING, MMO.MOVIETITLE, MME.MEMBERNAME, MME.MEMBERNICKNAME, MME.MEMBERID 
+	FROM MANAGER_COMMENT MC, MANAGER_MEMBER MME, MANAGER_MOVIE MMO WHERE
+	]]>
+		<trim prefix=" (" suffix=") AND ">
+			<foreach item="type" collection="typeArr">
+				<choose>
+					<when test="type=='M'.toString()">
+						MOVIETITLE LIKE
+						'%'||#{keyword}||'%' OR MOVIEETITLE
+						LIKE
+						'%'||#{keyword}||'%'
+					</when>
+					<when test="type=='I'.toString()">
+						MEMBERID=#{keyword}
+					</when>
+					<when test="type=='N'.toString()">
+						MEMBERNICKNAME=#{keyword}
+					</when>
+				</choose>
+			</foreach>
+		</trim>
+	<![CDATA[
+	MC.MEMBERNO=MME.MEMBERNO AND MC.MOVIENO=MMO.MOVIENO AND 
+	ROWNUM <= (#{pageNum}*#{amount})) WHERE (RN > (#{pageNum}-1)*#{amount})
 	]]>
 	</select>
 
-	<select id="commentGetTotalCount">
+	<select id="commentManagerGetTotalCount" resultType="int">
 	<![CDATA[
 	SELECT COUNT(*) FROM MANAGER_COMMENT WHERE COMMENTNO>0
 	]]>
 	</select>
 
-	<select id="commentDetail"
-		resultType="com.cinema.domain.CommentManagerDto">
-	<![CDATA[
-	SELECT * FROM MANAGER_COMMENT WHERE COMMENTNO=#{commentNo}
-	]]>
-	</select>
-
-	<select id="commentSearch"
-		resultType="com.cinema.domain.CommentManagerDto">
-	<![CDATA[
-	<!-- 영화명 또는 회원ID를 choose하여 그에 따른 검색 가능하게 설정 -->
-	SELECT MMO.MOVIETITLE , MMO.MOVIEETITLE , MME.MEMBERID , MC.COMMENTTITLE, MC.COMMENTCONTENTS 
-	FROM MANAGER_COMMENT MC, MANAGER_MOVIE MMO, MANAGER_MEMBER MME WHERE 
-	]]>
-		<choose>
-			<when test="type == 'member'">
-				MEMBERNO IN (SELECT MEMBERNO FROM
-				MANAGER_MEMBER WHERE
-				(MEMBERID =
-				#{keyword}))
-				AND MC.MOVIENO=MMO.MOVIENO AND MC.MEMBERNO =
-				MME.MEMBERNO;
-			</when>
-
-			<when test="type == 'movie'">
-				MOVIENO IN (SELECT MOVIENO FROM MANAGER_MOVIE WHERE
-				(MOVIETITLE LIKE
-				'%#{keyword}%' OR MOVIEETITLE LIKE
-				'%'||#{keyword}||'%'))
-				AND MC.MOVIENO=MMO.MOVIENO AND MC.MEMBERNO =
-				MME.MEMBERNO;
-			</when>
-		</choose>
-	</select>
-
-	<delete id="commentDelete">
+	<delete id="commentManagerDelete">
 	<![CDATA[
 		DELETE FROM MANAGER_COMMENT WHERE
 		COMMENTNO=#{commentNo}
 	]]>
 	</delete>
 
-
 </mapper>
+

@@ -3,20 +3,18 @@ package com.cinema.service;
 import java.util.List;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.ReservationManagerDto;
+import com.cinema.domain.ReservationManagerResultMap;
 
 public interface ReservationManagerService {
 
-	public List<ReservationManagerDto> reservationList();
+	public List<ReservationManagerResultMap> reservationManagerList(Criteria cri);
 
-	public int reservationGetTotalCount();
+	public int reservationManagerGetTotalCount();
 
-	public List<ReservationManagerDto> reservationDetail(long resNo);
+	public List<ReservationManagerResultMap> reservationManagerGet(long resNo);
 
-	public boolean reservationDetailModify(ReservationManagerDto reservationManagerDto);
+	public boolean reservationManagerManagerModify(ReservationManagerResultMap reservationManagerResultMap);
 
-	public boolean reservationManagerDelete(long resNo);
-
-	public List<ReservationManagerDto> reservationManagerSearch(Criteria cri);
+	public boolean reservationManagerManagerDelete(long resNo);
 
 }

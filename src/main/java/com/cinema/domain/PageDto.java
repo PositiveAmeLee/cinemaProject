@@ -1,12 +1,16 @@
 package com.cinema.domain;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class PageDto {
 	
 	private int startPage;
 	private int endPage;
 	private boolean prev, next;
 	
-	//total은 전체 데이터 수
 	private int total;
 	private Criteria cri;
 	
