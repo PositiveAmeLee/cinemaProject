@@ -12,7 +12,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <%@ include file="../common/header.jsp"%>
 
 
-<c:if test="${isLogOn!=true or empty memberVO }">
+<c:if test="${isLogOn!=true or empty responseDto }">
 	
 	<script>
 	
@@ -30,12 +30,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		 <div class="contact-form">
 			 <form action = "/mypage/contact"  method="post">
 				 <div class="col-md-6 contact-left">
-					  <input type="text" name="name" placeholder="Name" required/>
-					  <input type="text" name="email" placeholder="E-mail" required/>
-					  <input type="text" name="phone" placeholder="Phone" required/>
+					  <input type="text" name="memberName" placeholder="Name" required/>
+					  <input type="text" name="memberEmail" placeholder="E-mail" required/>
+					  <input type="text" name="memberPhone" placeholder="Phone" required/>
+					  <input type="hidden" name="memberNo" value="${responseDto.memberNo}">
 				  </div>
 				  <div class="col-md-6 contact-right">
-					 <textarea name="message" placeholder="메시지를 남겨주시면 관리자가 확인 후 이메일이나 핸드폰으로 연락을 드리겠습니다. 감사합니다."></textarea>
+					 <textarea name="questionContents" placeholder="메시지를 남겨주시면 관리자가 확인 후 이메일이나 핸드폰으로 연락을 드리겠습니다. 감사합니다."></textarea>
 					 <input type="submit" value="SEND"/>
 				 </div>
 				 <div class="clearfix"></div>

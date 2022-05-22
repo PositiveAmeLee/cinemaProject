@@ -62,12 +62,11 @@
 									href="member?memberNo=<c:out value="${memberList.memberNo }"/>">
 										<c:out value="${memberList.memberId }" />
 								</a></td>
-								<td><c:out value="${memberList.memberNickname }" /></td>
+							
 								<td><c:out value="${memberList.memberName }" /></td>
 								<td><c:out value="${memberList.memberGender }" /></td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 										value="${memberList.memberBirth }" /></td>
-								<td><c:out value="${memberList.memberAuthority }" /></td>
 								<td>
 									<button class="btn btn-default"
 										onclick="location.href='/memberManager/modify?memberNo=<c:out value="${memberList.memberNo}"/>'">수정</button>

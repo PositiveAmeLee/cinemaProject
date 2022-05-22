@@ -20,26 +20,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<c:forEach var="movie" items="${list}">
 					<div class="review">
 						<div class="movie-pic">
-							<a href="/replies/reply?movieNO=${movie.movie_no}"><img src="${movie.movie_image_file_name}"
+							<a href="/replies/reply?movieNO=${movie.movieNo}"><img src="${movie.movieImage}"
 								alt="" /></a>
 						</div>
 						<div class="review-info">
-							<a class="span" href="/replies/reply?movieNO=${movie.movie_no}">${movie.movie_title} <i>Movie
+							<a class="span" href="/replies/reply?movieNO=${movie.movieNo}">${movie.movieTitle} <i>Movie
 									Review</i></a>
 							<p class="dirctr">
-								<a href="">${movie.movie_director } </a>${movie.movie_release_date }
+								<a href="">${movie.movieDirector } </a>${movie.movieOpendate }
 							</p>
 							<p class="ratingview">Critic's Rating:</p>
 							<div class="rating">
 								<span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span>
 							</div>
-							<p class="ratingview">&nbsp;${movie.movie_res_rating}/10</p>
+							<p class="ratingview">&nbsp;9.34/10</p>
 							<div class="clearfix"></div>
 							<p class="ratingview c-rating">Avg Readers' Rating:</p>
 							<div class="rating c-rating">
 								<span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span>
 							</div>
-							<p class="ratingview c-rating">&nbsp; ${movie.movie_star_rating}/10</p>
+							<p class="ratingview c-rating">&nbsp; 9.34/10</p>
 							<div class="clearfix"></div>
 							<div class="yrw">
 								<div class="dropdown-button">
@@ -58,10 +58,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<option value="9">9.Best</option>
 										<option value="10">10.Best You've never seen before</option>
 									</select>
-									<input type = "hidden" value="${movie.movie_no}" name = "movieNO">
+									<input type = "hidden" value="${movie.movieNo}" name = "movieNO">
 									<input type = "hidden" value="1" name="memberNO">
-									<input type = "hidden" value="NO TITLE" name="title">
-									<input type = "hidden" value="NO CONTENT" name="content">
+									<input type = "hidden" value="NO TITLE" name="movieTitle">
+									<input type = "hidden" value="NO CONTENT" name="movieContent">
 								</div>
 								<div class="rtm text-center">
 								<input type="submit"
@@ -69,16 +69,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</div>
 								</form>
 								<div class="wt text-center">
-									<a href="${movie.movie_trailer}">WATCH THIS TRAILER</a>
+									<a href="${movie.movieTrailer}">WATCH THIS TRAILER</a>
 								</div>
 								<div class="clearfix"></div>
 							</div>
 							<p class="info">CAST:&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								${movie.movie_cast }</p>
-							<p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;${movie.movie_director}</p>
+								${movie.movieActor }</p>
+							<p class="info">DIRECTION: &nbsp;&nbsp;&nbsp;&nbsp;${movie.movieDirector}</p>
 							<p class="info">GENRE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								${movie.movie_genre }</p>
+								${movie.movieGenre }</p>
 						
 						</div>
 						<div class="clearfix"></div>
@@ -238,12 +238,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<div class="review-slider">
 		<ul id="flexiselDemo1">
-			<li><img src="${list[0].movie_image_file_name}" alt=""/></li>
-			<li><img src="${list[1].movie_image_file_name}"alt=""/></li>
-			<li><img src="${list[2].movie_image_file_name}" alt=""/></li>
-			<li><img src="${list[3].movie_image_file_name}" alt=""/></li>
-			<li><img src="${list[4].movie_image_file_name}" alt=""/></li>
-			<li><img src="${list[5].movie_image_file_name}" alt=""/></li>
+			<li><img src="${list[0].movieImage}" alt=""/></li>
+			<li><img src="${list[1].movieImage}"alt=""/></li>
+			<li><img src="${list[2].movieImage}" alt=""/></li>
+			<li><img src="${list[3].movieImage}" alt=""/></li>
+			<li><img src="${list[4].movieImage}" alt=""/></li>
+			<li><img src="${list[5].movieImage}" alt=""/></li>
 		</ul>
 		<script type="text/javascript">
 			$(window).load(function() {

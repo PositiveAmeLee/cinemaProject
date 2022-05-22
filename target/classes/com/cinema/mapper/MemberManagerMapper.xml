@@ -4,17 +4,37 @@
 	namespace="com.cinema.mapper.MemberManagerMapper">
 
 	<select id="memberGetListWithPaging"
-		resultType="com.cinema.domain.MemberDto">
+		resultType="com.cinema.domain.MemberDto$MemberResultDto">
 	<![CDATA[
-		SELECT * FROM (SELECT /*+INDEX_DESC(MANAGER_MEMBER MANAGER_MEMBER_PK)*/
-		ROWNUM RN, MEMBERNO, MEMBERID, MEMBERNICKNAME, MEMBERNAME, MEMBERBIRTH, MEMBERGENDER, MEMBERAUTHORITY, MEMBERPHONE, MEMBERTELL, MEMBEREMAIL
-		CREATETIME FROM MANAGER_MEMBER WHERE
+		SELECT * FROM (SELECT /*+INDEX_DESC(MOVIE_MEMBER MOVIE_MEMBER_PK)*/
+		ROWNUM RN, 
+		memberid,
+		membername,
+		membergender,
+		memberbirth_y,
+		memberbirth_m,
+		memberbirth_d,
+		memberbirth_gn,
+		tel1,
+		tel2,
+		tel3,
+		hp1,
+		hp2,
+		hp3,
+		smssts_yn,
+		email1,
+		email2,
+		emailsts_yn,
+		zipcode,
+		roadAddress,
+		jibunAddress,
+		namujiAddress FROM MOVIE_MEMBER WHERE
 	]]>
 		<trim prefix=" (" suffix=") AND ">
 			<foreach item='type' collection="typeArr">
 				<choose>
 					<when test="type=='M'.toString()">
-						MEMBERNO IN(SELECT MEMBERNO FROM MANAGER_MEMBER
+						MEMBERNO IN(SELECT MEMBERNO FROM MOVIE_MEMBER
 						WHERE MEMBERID=#{keyword})
 					</when>
 				</choose>
@@ -27,20 +47,39 @@
 
 	<select id="memberGetTotalCount" resultType="int">
 	<![CDATA[
-		SELECT COUNT(*) FROM MANAGER_MEMBER WHERE MEMBERNO>0	
+		SELECT COUNT(*) FROM MOVIE_MEMBER WHERE MEMBERNO>0	
 	]]>
 	</select>
 
 	<select id="memberGet"
-		resultType="com.cinema.domain.MemberDto">
+		resultType="com.cinema.domain.MemberDto$MemberResultDto">
 	<![CDATA[	
-		SELECT * FROM MANAGER_MEMBER WHERE MEMBERNO=#{memberNo}
+		SELECT * FROM Movie_MEMBER WHERE MEMBERNO=#{memberNo}
 		]]>
 	</select>
 
 	<update id="memberModify">
 	<![CDATA[	
-		UPDATE MANAGER_MEMBER SET MEMBERPHONE=#{memberPhone}, MEMBERTELL=#{memberTell}, MEMBEREMAIL=#{memberEmail}, MEMBERAUTHORITY=#{memberAuthority} , MEMBERNICKNAME=#{memberNickname} WHERE MEMBERNO=#{memberNo}
+		update movie_member set
+		memberpw = #{memberPw},
+		tel1 = #{tel1},
+		tel2 = #{tel2},
+		tel3 = #{tel3},
+		hp1 = #{hp1},
+		hp2 = #{hp2},
+		hp3 = #{hp3},
+		smssts_yn =
+		#{smssts_yn},
+		email1 = #{email1},
+		email2 =
+		#{email2},
+		emailsts_yn =
+		#{emailsts_yn},
+		zipcode = #{zipcode},
+		roadAddress = #{roadAddress},
+		jibunAddress = #{jibunAddress},
+		namujiAddress = #{namujiAddress}
+		WHERE memberNo=#{memberNo}
 	]]>
 	</update>
 

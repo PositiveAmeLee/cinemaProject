@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.cinema.domain.Criteria;
 import com.cinema.domain.MovieDto;
 import com.cinema.service.MovieService;
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cinema.domain.Criteria;
 import com.cinema.domain.MemberDto;
 import com.cinema.domain.MovieDto;
 import com.cinema.domain.ReservationDto;
@@ -30,9 +31,9 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/ticket/")
 public class ReservationController {
 	//@Autowired 생략 = 스프링 4.3이후 지원하는 묵시적 자동 주입
-	private ReservationService reservationService;
+	private final ReservationService reservationService;
 	//영화리스트를 가져오기 위해 사용
-	private MovieService movieService;
+	private final MovieService movieService;
 	
 	//티켓예매 페이지 이동
 	@GetMapping("/ticketForm")
@@ -81,7 +82,7 @@ public class ReservationController {
     @GetMapping("/Allticket")
 	public String getAll(HttpServletRequest request,Model model,RedirectAttributes rttr) {
     	HttpSession session = request.getSession();
-    	MemberDto.MemberLoginResponseDto responseDto =(MemberDto.MemberLoginResponseDto)session.getAttribute("response");
+    	MemberDto.MemberLoginResponseDto responseDto =(MemberDto.MemberLoginResponseDto)session.getAttribute("responseDto");
     	Long memberNO = responseDto.getMemberNo();
 		List<ReservationDto.ReservationResultDto> allTicketLists = reservationService.getAll(memberNO);
 		model.addAttribute("ticketList",allTicketLists);

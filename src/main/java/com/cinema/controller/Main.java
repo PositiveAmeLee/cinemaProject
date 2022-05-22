@@ -21,17 +21,17 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor//생성자주입
 public class Main {
 	// @Autowired 생략 = 스프링 4.3 이후 지원하는 묵시적 자동 주입
-	MovieManagerService movieManagerService;
+	private final MovieManagerService movieManagerService;
 	
-	MemberManagerService memberManagerService;
+	private final MemberManagerService memberManagerService;
 	
-	ReservationManagerService reservationManagerService;
+	private final ReservationManagerService reservationManagerService;
 	
-	CommentManagerService commentManagerService;
+	private final CommentManagerService commentManagerService;
 	
-	NoticeManagerService noticeManagerService;
+	private final NoticeManagerService noticeManagerService;
 	
-	ContactManagerService contactManagerService;
+	private final ContactManagerService contactManagerService;
 	
 	
 	@GetMapping("/manager")

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cinema.domain.ReservationDto;
-import com.cinema.domain.TicketVO;
 import com.cinema.mapper.ReservationMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -14,10 +13,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor//생성자주입
 public class ReservationServiceImpl implements ReservationService {
 	//@Autowired 생략 = 스프링 4.3이후 지원하는 묵시적 자동 주입
-	private ReservationMapper reservationMapper;
+	private final ReservationMapper reservationMapper;
 	
 	@Override
-	public TicketVO get(Long ticketNO) {
+	public ReservationDto.ReservationResultDto get(Long ticketNO) {
 		return reservationMapper.get(ticketNO); 
 	}
 

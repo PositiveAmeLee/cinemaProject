@@ -18,17 +18,17 @@ import com.cinema.service.ReservationManagerService;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
 @RequestMapping("/reservationManager/*")
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class ReservationManagerController {
 
 	@Autowired
-	ReservationManagerService reservationManagerService;
+	private final ReservationManagerService reservationManagerService;
 
 	@GetMapping("/list")
 	public void reservationManagerList(Model model, Criteria cri) {

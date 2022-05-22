@@ -22,10 +22,12 @@ public class ReservationDto {
 		private String title;
 		private String runningTime;
 		private String movieDate;
+		private int reserveSequence;
 		private String ticketNumber;
 		private String selectedSeat;
 		private String selectedTheater;
 		private String movieAge;
+		private long memberNo;
 	}
 	
 	@Data

@@ -38,7 +38,7 @@
 
 		<div class="inner">
 			<div class="image-holder">
-				<img id="poster" src="${main.movie_image_file_name}" alt="">
+				<img id="poster" src="${main.movieImage}" alt="">
 			</div>
 			<form action="/member/login" id="loginForm" method="post">
 				<p class="register-title">
@@ -47,13 +47,13 @@
 				</p>
 				<div class="form-wrapper form-wrapper-id">
 					<div class="id-wrapper">
-						<input id="id" name="member_id" type="text" placeholder="아이디"
+						<input id="id" name="memberId" type="text" placeholder="아이디"
 							class="form-control"> <i class="zmdi zmdi-accounts"></i>
 					</div>
 				</div>
 
 				<div class="form-wrapper">
-					<input type="password" name="member_pw" placeholder="비밀번호"
+					<input type="password" name="memberPw" placeholder="비밀번호"
 						id="password" class="form-control"> <i
 						class="zmdi zmdi-lock"></i>
 				</div>

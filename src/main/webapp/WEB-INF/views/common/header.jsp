@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul>
 
 				<c:choose>
-					<c:when test="${isLogOn==true and not empty memberVO }">
+					<c:when test="${isLogOn==true and not empty responseDto }">
 						<li><a href="/member/logout" style="color: #dfb636;">로그아웃</a></li>
 						<li><a href="/mypage/mypage" style="color: #dfb636;">마이페이지</a></li>
 					</c:when>
@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="/member/join" style="color: #dfb636;">회원가입</a></li>
 					</c:otherwise>
 				</c:choose>
-				<c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">
+				<c:if test="${isLogOn==true and responseDto.memberId =='admin' }">
 					<li class="no_line"><a
 						href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
 				</c:if>

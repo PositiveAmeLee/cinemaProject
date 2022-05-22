@@ -4,31 +4,34 @@
   "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cinema.mapper.ReservationMapper">
 
-	<select id="get" resultType="com.cinema.domain.ReservationDto$ReservationResultDto">
+	<select id="get"
+		resultType="com.cinema.domain.ReservationDto$ReservationResultDto">
 
-		select * from movie_ticket where ticketNO=#{ticketNO}
+		select * from movie_ticket where ticketNO=#{ticketNo}
 
 	</select>
 
-    <select id="getAll" resultType="com.cinema.domain.ReservationDto$ReservationResultDto">
-    
-    	select * from movie_ticket where memberNO=#{memberNO}
-    
-    </select>
+	<select id="getAll"
+		resultType="com.cinema.domain.ReservationDto$ReservationResultDto">
+
+		select * from movie_ticket where memberNO=#{memberNo}
+
+	</select>
 
 	<insert id="ticketing">
 
-		insert into movie_ticket (ticketNO,memberNO,id, reserveSequence, title,
+		insert into movie_ticket (ticketNO,memberNO, title,reserveSequence,
 		runningTime, movieDate, ticketNumber, selectedSeat, selectedTheater)
-		values (seq_ticket.nextval,#{memberNO},#{id}, #{reserveSequence},
-		#{title}, #{runningTime}, #{movieDate}, #{ticketNumber},
+		values (seq_ticket.nextval,#{memberNo},
+		#{title},#{reserveSequence}, #{runningTime},
+		#{movieDate}, #{ticketNumber},
 		#{selectedSeat}, #{selectedTheater})
 
 	</insert>
 
 	<delete id="cancel">
 
-		delete from  movie_ticket where ticketNO=#{ticketNO}
+		delete from movie_ticket where ticketNO=#{ticketNO}
 
 	</delete>
 

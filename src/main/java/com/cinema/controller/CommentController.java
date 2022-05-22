@@ -27,12 +27,7 @@ public class CommentController {
 	
 	/*
 	 * parameter
-	 * Criteria의 필드값
-	 * int pageNum
-	 * int amount
-	 * String type
-	 * String keyword
-	 * (검색 및 페이징처리에 필요한 값입니다.)
+	 * list 를 담기위한 Model
 	 * */
 	@GetMapping("/reviewMain")
 	public void moveToReview(Model model) {
@@ -65,9 +60,9 @@ public class CommentController {
 	 * comment 조회를 위한 primary key(Long commnetNO)
 	 * */
     @GetMapping("/get")
-	public void get(Long commentNO,Model model) {
+	public void get(Long commentNo,Model model) {
 		//CommnetService에서 CommnetDto.CommnetResultDto를 가져와 모델에 추가합니다.
-		CommentDto.CommentResultDto commnetDto = commentService.get(commentNO);
+		CommentDto.CommentResultDto commnetDto = commentService.get(commentNo);
 		model.addAttribute("comment", commnetDto);
 	}
     
@@ -89,9 +84,9 @@ public class CommentController {
      * 삭제 이후 페이지 이동처리를 위한 movieNO
      * */
     @PostMapping("/update")
-	public String modify(CommentDto.CommentUpdateDto updateDto,Long movieNO){
+	public String modify(CommentDto.CommentUpdateDto updateDto,Long movieNo){
 		int result = commentService.modify(updateDto);
-		return "redirect:/replies/reply?movieNO="+movieNO;
+		return "redirect:/replies/reply?movieNO="+movieNo;
 	}
 
     /*
@@ -101,9 +96,9 @@ public class CommentController {
 	 * 삭제 이후 페이지 이동처리를 위한 movieNO
 	 */
     @PostMapping("/delete")
-	public String remove(Long commentNO,Long movieNO){
-		log.info("remove reply..........replyNO: "+commentNO);
-		int result = commentService.remove(commentNO);
-		return "redirect:/replies/reply?movieNO="+movieNO;
+	public String remove(Long commentNo,Long movieNo){
+		log.info("remove reply..........replyNO: "+commentNo);
+		int result = commentService.remove(commentNo);
+		return "redirect:/replies/reply?movieNO="+movieNo;
 	}
 }

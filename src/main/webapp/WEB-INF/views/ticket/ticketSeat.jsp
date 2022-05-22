@@ -1,11 +1,11 @@
-<%@page import="com.cinema.domain.TicketVO"%>
+<%@page import="com.cinema.domain.ReservationDto.ReservationCreateDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <%
 	
-	TicketVO reserve = (TicketVO) request.getAttribute("reserve");
+     ReservationCreateDto reserve = (ReservationCreateDto) request.getAttribute("reserve");
 	/* if (reserve != null && reserve.getCgvPayDto() != null) {
 		System.out.println(reserve.toString());
 	} else {
@@ -126,7 +126,7 @@
 						<input type="hidden" class="runningTime" name="runningTime">
 						
 						<!-- 멤버 하드코딩 -->
-						<input type="hidden" class="memberNO" name="memberNO" value="${memberVO.member_no}">
+						<input type="hidden" class="memberNO" name="memberNo" value="${responseDto.memberNo}">
 						<input type="hidden" class="id" name="id" value="id">
 						<!-- 티켓의수(선택한 좌석) -->
 						<input type="hidden" class="ticketNumber" name="ticketNumber">

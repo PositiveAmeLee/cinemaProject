@@ -6,9 +6,9 @@
 	<select id="movieManagerList"
 		resultType="com.cinema.domain.MovieDto$MovieResultDto">
 		<![CDATA[
-		SELECT * FROM (SELECT /*+INDEX_DESC(MANAGER_MOVIE MANAGER_MOVIENO_PK)*/
-		ROWNUM RN, MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE, MOVIEGENRE, MOVIEGRADE, MOVIEOPENDATE, MOVIECONTENTS, MOVIERESRATING, 
-		COMMENTSTARRATING, MOVIEIMAGE, MOVIESTATUS FROM MANAGER_MOVIE WHERE
+		SELECT * FROM (SELECT /*+INDEX_DESC(MOVIE MOVIENO_PK)*/
+		ROWNUM RN, MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE, MOVIEGENRE, MOVIEGRADE, MOVIEOPENDATE, MOVIECONTENTS, 
+		 MOVIEIMAGE, MOVIESTATUS FROM MOVIE WHERE
 	]]>
 		<trim prefix=" (" suffix=") AND ">
 			<foreach item='type' collection="typeArr">
@@ -28,16 +28,16 @@
 
 	<select id="movieManagerGetTotalCount" resultType="int">
 	<![CDATA[
-	SELECT COUNT(*) FROM MANAGER_MOVIE WHERE MOVIENO>0	
+	SELECT COUNT(*) FROM MOVIE WHERE MOVIENO>0	
 	]]>
 	</select>
 
 	<insert id="movieManagerRegister">
-		INSERT INTO MANAGER_MOVIE(MOVIENO,
+		INSERT INTO MOVIE(MOVIENO,
 		MOVIETITLE,MOVIEETITLE, MOVIEDIRECTOR,MOVIEACTOR, MOVIETYPE,
 		MOVIEGENRE,MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE, MOVIESTATUS,
 		MOVIEIMAGE, MOVIEPLAYTIME)
-		VALUES(SEQUENCE_MOVIE.NEXTVAL,#{movieTitle},#{movieEtitle},#{movieDirector},#{movieActor},#{movieType},
+		VALUES(seq_MOVIE.NEXTVAL,#{movieTitle},#{movieEtitle},#{movieDirector},#{movieActor},#{movieType},
 		#{movieGenre},#{movieGrade},#{movieContents},#{movieOpendate},#{movieStatus},#{movieImage},#{moviePlaytime})
 	</insert>
 
@@ -45,20 +45,20 @@
 		resultType="com.cinema.domain.MovieDto$MovieResultDto">
 	<![CDATA[
 	SELECT MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE,
-		MOVIEGENRE, MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE, MOVIESTATUS, MOVIEIMAGE, MOVIEPLAYTIME FROM MANAGER_MOVIE WHERE MOVIENO=#{movieNo}
+		MOVIEGENRE, MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE, MOVIESTATUS, MOVIEIMAGE, MOVIEPLAYTIME FROM MOVIE WHERE MOVIENO=#{movieNo}
 	]]>
 	</select>
 
 	<update id="movieManagerModify">
 	<![CDATA[
-	UPDATE MANAGER_MOVIE SET MOVIETITLE=#{movieTitle}, MOVIEETITLE=#{movieEtitle}, MOVIEDIRECTOR=#{movieDirector}, MOVIEACTOR=#{movieActor}, MOVIETYPE=#{movieType}, 
+	UPDATE MOVIE SET MOVIETITLE=#{movieTitle}, MOVIEETITLE=#{movieEtitle}, MOVIEDIRECTOR=#{movieDirector}, MOVIEACTOR=#{movieActor}, MOVIETYPE=#{movieType}, 
 	MOVIEGENRE=#{movieGenre}, MOVIEGRADE=#{movieGrade}, MOVIECONTENTS=#{movieContents}, MOVIEOPENDATE=#{movieOpendate}, MOVIESTATUS=#{movieStatus}, MOVIEIMAGE=#{movieImage}, MOVIEPLAYTIME=#{moviePlaytime} WHERE MOVIENO=#{movieNo}
 	]]>
 	</update>
 
 	<update id="movieManagerDelete">
 	<![CDATA[
-	UPDATE MANAGER_MOVIE SET DEL_YN = 'Y' WHERE MOVIENO=#{movieNo}
+	UPDATE MOVIE SET MovieStatus = '종영' WHERE MOVIENO=#{movieNo}
 	]]>
 	</update>
 </mapper>

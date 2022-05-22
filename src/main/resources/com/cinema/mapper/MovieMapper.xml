@@ -6,13 +6,20 @@
 
 	<select id="movieList" resultType="com.cinema.domain.MovieDto$MovieResultDto">
 	
-	select * from movie where movie_no > 0
+	<![CDATA[
+		SELECT * FROM (SELECT /*+INDEX_DESC(MOVIE MOVIENO_PK)*/
+		ROWNUM RN, MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE, MOVIEGENRE, MOVIEGRADE, MOVIEOPENDATE, MOVIECONTENTS, 
+		 MOVIEIMAGE, MOVIESTATUS ,MOVIETRAILER FROM MOVIE) 
+		]]>
 	
 	</select>
 
 	<select id="movieInfo" resultType="com.cinema.domain.MovieDto$MovieResultDto">
 	
-	select * from movie where movie_no = #{movie_no}
+	<![CDATA[
+	SELECT MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE,
+		MOVIEGENRE, MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE, MOVIESTATUS, MOVIEIMAGE, MOVIEPLAYTIME FROM MOVIE WHERE MOVIENO=#{movieNo}
+	]]>
 	
 	</select>
 	

@@ -13,12 +13,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <%@ include file="../common/header.jsp"%>
 
-<c:if test="${comment.memberNO != memberVO.member_no}">
+<c:if test="${comment.memberNo != responseDto.memberNo}">
 	
 	<script>
 	
 	alert("리뷰를 작성한 본인만 작성할 수 있습니다.")
-	location.href = "/replies/reply?movieNO="+${comment.movieNO}
+	location.href = "/replies/reply?movieNo="+${comment.movieNo}
 	
 	</script>
 
@@ -36,8 +36,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="blog-form" height="50%" width="50%" valign="middle" align="center">
 			<form action="/replies/update" method="post">
 				<select class="dropdown" tabindex="9"
-					data-settings='{"wrapperClass":"flat"}' name='stars'
-					value="${comment.stars}" height="50%" width="50%" valign="middle" align="center">
+					data-settings='{"wrapperClass":"flat"}' name='commentStarRating'
+					value="${comment.commentStarRating}" height="50%" width="50%" valign="middle" align="center">
 					<option value="0">Your rating</option>
 					<option value="1">1.Poor</option>
 					<option value="2">2.(Below average)</option>
@@ -49,18 +49,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<option value="8">8.Outstanding</option>
 					<option value="9">9.Best</option>
 					<option value="10">10.Best You've never seen before</option>
-				</select> <input type="hidden" value="${comment.movieNO}" name="movieNO">
-				<input type="hidden" value="${memberVO.member_no}" name="memberNO"> <input
-					type="hidden" value="${comment.replyNO}" name = "replyNO"> <input type="text"
-					class="text" value="title" name="title"
-					placeholder="${comment.title}" height="50%" width="50%" valign="middle" align="center">
-				<textarea name="content" placeholder="${comment.content}" height="50%" width="50%" valign="middle" align="center"></textarea>
+				</select> <input type="hidden" value="${comment.movieNo}" name="movieNo">
+				<input type="hidden" value="${responseDto.memberNo}" name="memberNO"> 
+				<input
+					type="hidden" value="${comment.commentNo}" name = "commentNo"> 
+				<textarea name="commentContents" placeholder="${comment.commentContents}" height="50%" width="50%" valign="middle" align="center"></textarea>
 				<input type="submit" value="수정하기">
 			</form>
 
 			<form action="/replies/delete" method="post">
-				<input type="hidden" value="${comment.commentNO}" name="commentNO">
-				<input type="hidden" value="${comment.movieNO}" name="movieNO">
+				<input type="hidden" value="${comment.commentNo}" name="commentNo">
+				<input type="hidden" value="${comment.movieNo}" name="movieNo">
 				<input type="submit" value="삭제하기">
 			</form>
 

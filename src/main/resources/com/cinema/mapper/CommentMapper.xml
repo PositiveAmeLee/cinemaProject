@@ -8,14 +8,14 @@
 		resultType="com.cinema.domain.CommentDto$CommentResultDto">
 
 		select * from movie_comment where
-		commentNO = #{commentNO}
+		commentNO = #{commentNo}
 
 	</select>
 
 	<select id="getListFindByMovieNO"
 		resultType="com.cinema.domain.CommentDto$CommentResultDto">
 
-		select * from movie_comment where movieNO=#{movieNO}
+		select * from movie_comment where movieNO=#{movieNO} and del_yn is null
 
 	</select>
 

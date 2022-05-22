@@ -2,6 +2,7 @@ package com.cinema.mapper;
 
 import java.util.List;
 
+import com.cinema.domain.Criteria;
 import com.cinema.domain.MovieDto;
 
 public interface MovieMapper {

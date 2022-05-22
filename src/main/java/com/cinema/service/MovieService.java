@@ -2,6 +2,7 @@ package com.cinema.service;
 
 import java.util.List;
 
+import com.cinema.domain.Criteria;
 import com.cinema.domain.MovieDto;
 
 public interface MovieService {

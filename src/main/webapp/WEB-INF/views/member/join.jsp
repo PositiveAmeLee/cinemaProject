@@ -135,14 +135,14 @@ function execDaumPostcode() {
 						<input id="_member_id" name="_member_id" type="text"
 							placeholder="아이디" class="form-control">
 						<!-- <i class="zmdi zmdi-id">아이디 체크</i> -->
-						<input type="hidden" name="member_id" id="member_id" />
+						<input type="hidden" name="memberId" id="member_id" />
 						<button type="button" class="idCheckButton"
 							onClick="fn_overlapped()">아이디 체크</button>
 					</div>
 				</div>
 
 				<div class="form-wrapper">
-					<input type="password" name="member_pw" placeholder="비밀번호"
+					<input type="password" name="memberPw" placeholder="비밀번호"
 						id="password" class="form-control"> <i
 						class="zmdi zmdi-lock"></i>
 				</div>
@@ -153,17 +153,17 @@ function execDaumPostcode() {
 				</div>
 
 				<div class="form-wrapper">
-					<input name="member_name" type="text" placeholder="이름"
+					<input name="memberName" type="text" placeholder="이름"
 						class="form-control"> <i class="zmdi zmdi-account-box"></i>
 				</div>
 				<div class="form-wrapper">
-					성별 <input type="radio" name="member_gender" value="102" /> 여성<span
+					성별 <input type="radio" name="memberGender" value="102" /> 여성<span
 						style="padding-left: 120px"></span> <input type="radio"
-						name="member_gender" value="101" checked />남성
+						name="memberGender" value="101" checked />남성
 				</div>
 				<br> <br>
 				<div class="form-wrapper">
-					생년월일 <select name="member_birth_y">
+					생년월일 <select name="memberBirth_y">
 
 						<c:forEach var="year" begin="1" end="100">
 							<c:choose>
@@ -176,7 +176,7 @@ function execDaumPostcode() {
 							</c:choose>
 						</c:forEach>
 
-					</select>년 <select name="member_birth_m">
+					</select>년 <select name="memberBirth_m">
 						<c:forEach var="month" begin="1" end="12">
 							<c:choose>
 								<c:when test="${month==5 }">
@@ -187,7 +187,7 @@ function execDaumPostcode() {
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
-					</select>월 <select name="member_birth_d">
+					</select>월 <select name="memberBirth_d">
 						<c:forEach var="day" begin="1" end="31">
 							<c:choose>
 								<c:when test="${day==10 }">
@@ -199,9 +199,9 @@ function execDaumPostcode() {
 							</c:choose>
 						</c:forEach>
 					</select>일 <br> <br> <span style="padding-left: 50px"></span> <input
-						type="radio" name="member_birth_gn" value="2" checked />양력 <span
+						type="radio" name="memberBirth_gn" value="2" checked />양력 <span
 						style="padding-left: 50px"></span> <input type="radio"
-						name="member_birth_gn" value="1" />음력 <br> <br>
+						name="member_birthBn" value="1" />음력 <br> <br>
 				</div>
 				<div class="form-wrapper">
 					전화번호 <br> <br> <select name="tel1">

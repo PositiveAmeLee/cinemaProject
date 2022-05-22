@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cinema.domain.Criteria;
 import com.cinema.domain.MovieDto;
 import com.cinema.mapper.MovieMapper;
 

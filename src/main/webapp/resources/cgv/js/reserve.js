@@ -91,7 +91,7 @@ function setList(data) {
 function getMovieList(item) {
     console.log(item);
     return `<div class="movie-list">
-    <button class="movie-list-title">${item.movie_title}</button>
+    <button class="movie-list-title">${item.movieTitle}</button>
 </div>`;
 }
 

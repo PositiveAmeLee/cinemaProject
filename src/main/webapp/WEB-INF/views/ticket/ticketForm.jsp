@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@page import="com.cinema.domain.MemberVO"%>
 
 <html lang="en">
 
@@ -282,19 +281,16 @@ body {
 }
 </style>
 
-<%
-MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
-%> 
-<%
-if (memberVO == null) {
-%>
-<script>
+<c:if test="${isLogOn!=true or empty responseDto }">
+	
+	<script>
+	
 	alert("로그인이 필요한 작업입니다 로그인을 진행해 주세요!")
 	location.href = "/member/login"
-</script>
-<%
-}
-%>
+	
+	</script>
+
+</c:if>
 </head>
 
 <body>

@@ -23,7 +23,7 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor //생성자 주입
 public class NoticeManagerControllerImpl{
 	//@Autowired 생략 = 스프링 4.3버전 이후 지원하는 묵시적 자동 주입
-	NoticeManagerService noticeManagerService;
+	private final NoticeManagerService noticeManagerService;
 	
 	/*
 	 * 등록페이지로 이동

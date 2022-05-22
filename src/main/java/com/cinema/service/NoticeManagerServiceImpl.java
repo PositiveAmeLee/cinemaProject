@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor//생성자 주입
 public class NoticeManagerServiceImpl implements NoticeManagerService {
 	//@Autowired 생략 = 스프링 4.3버전 이후 지원하는 묵시적 자동 주입
-	NoticeManagerMapper noticeManagerMapper;
+	private final NoticeManagerMapper noticeManagerMapper;
 	
 	@Override
 	public boolean noticeManagerRegister(NoticeDto.NoticeCreateDto createDto) {

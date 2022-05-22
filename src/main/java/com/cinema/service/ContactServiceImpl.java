@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor//생성자 주입
 public class ContactServiceImpl implements ContactService {
 	//@Autowired 생략 = 스프링 4.3 이후 지원하는 묵시적 자동 주입
-	private ContactMapper contactMapper;
+	private final ContactMapper contactMapper;
 
 	@Override
 	public int create(QuestionDto.QuestionCreateDto createDto) {

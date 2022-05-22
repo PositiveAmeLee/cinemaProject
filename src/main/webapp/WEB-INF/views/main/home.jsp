@@ -14,7 +14,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <style>
 .header {
-	background: url('${main.movie_image_file_name}') no-repeat 0px 0px;
+	background: url('${main.movieImage}') no-repeat 0px 0px;
 	background-size:  100% 100%;
 	-webkit-background-size: 100% 100%;
 	-moz-background-size: 100% 100%;
@@ -28,29 +28,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="clearfix"></div>
 		</div>
 		<div class="header-info" >
-			<h2 style="color: white;">${main.movie_title}</h2>
+			<h2 style="color: white;">${main.movieTitle}</h2>
 			
-			<p class="review">Rating
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;
-				${main.movie_star_rating}/10</p>
 			<p class="review reviewgo">Genre
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;
-				${main.movie_genre}</p>
+				${main.movieGenre}</p>
 			<p class="review">Release &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;
-				${main.movie_release_date}</p>
-			<p class="special">${main.movie_synopsis}</p>
-			<a class="video" href="${main.movie_trailer}"><i class="video1"></i>트레일러
+				${main.movieOpendate}</p>
+			<p class="special">${main.movieContents}</p>
+			<a class="video" href="${main.movieTrailer}"><i class="video1"></i>트레일러
 				보기</a> <a class="book" href="/ticket/ticketForm"><i class="book1"></i>예매하러 가기</a>
 		</div>
 	</div>
 	<div class="review-slider">
 		<ul id="flexiselDemo1">
-			<li><img src="${list[0].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[1].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[2].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[3].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[4].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[5].movie_image_file_name}" alt="" /></li>
+			<li><img src="${list[0].movieImage}" alt="" /></li>
+			<li><img src="${list[1].movieImage}" alt="" /></li>
+			<li><img src="${list[2].movieImage}" alt="" /></li>
+			<li><img src="${list[3].movieImage}" alt="" /></li>
+			<li><img src="${list[4].movieImage}" alt="" /></li>
+			<li><img src="${list[5].movieImage}" alt="" /></li>
 		</ul>
 		<script type="text/javascript">
 			$(window).load(function() {
@@ -82,7 +79,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<script type="text/javascript" src="/resources/js/jquery.flexisel.js"></script>
 	</div>
 	<div class="video">
-		<iframe src="${list[0].movie_trailer}" frameborder="0" allowfullscreen></iframe>
+		<iframe src="${main.movieTrailer}" frameborder="0" allowfullscreen></iframe>
 	</div>
 	<div class="news">
 		<div class="col-md-6 news-left-grid">
@@ -118,10 +115,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<div class="more-reviews">
 		<ul id="flexiselDemo2">
-			<li><img src="${list[0].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[1].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[2].movie_image_file_name}" alt="" /></li>
-			<li><img src="${list[3].movie_image_file_name}" alt="" /></li>
+			<li><img src="${list[0].movieImage}" alt="" /></li>
+			<li><img src="${list[1].movieImage}" alt="" /></li>
+			<li><img src="${list[2].movieImage}" alt="" /></li>
+			<li><img src="${list[3].movieImage}" alt="" /></li>
 		</ul>
 		<script type="text/javascript">
 			$(window).load(function() {

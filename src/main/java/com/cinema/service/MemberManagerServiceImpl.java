@@ -16,10 +16,10 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor
 public class MemberManagerServiceImpl implements MemberManagerService {
 	//@Autowired 생략 = 스프링 4.3버전 이후 지원하는 묵시적 자동 주입
-	MemberManagerMapper memberManagerMapper;
+	private final MemberManagerMapper memberManagerMapper;
 	
 	@Override
-	public List<MemberDto> memberList(Criteria cri) {
+	public List<MemberDto.MemberResultDto> memberList(Criteria cri) {
 		return memberManagerMapper.memberGetListWithPaging(cri);
 	}
 
@@ -29,7 +29,7 @@ public class MemberManagerServiceImpl implements MemberManagerService {
 	}
 
 	@Override
-	public List<MemberDto> memberGet(long memberNo) {
+	public MemberDto.MemberResultDto memberGet(long memberNo) {
 		return memberManagerMapper.memberGet(memberNo);
 	}
 

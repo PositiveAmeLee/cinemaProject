@@ -19,48 +19,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="review">
 					<div class="movie-pic">
 						<a href=""><img
-							src="${movie.movie_image_file_name }" alt="" /></a>
+							src="${movie.movieImage }" alt="" /></a>
 					</div>
 					<div class="review-info">
-						<a class="span" href="">${movie.movie_title} <i>Movie
+						<a class="span" href="">${movie.movieTitle} <i>Movie
 								Review</i></a>
 						<p class="dirctr">
-							<a href="">${movie.movie_director } </a>${movie.movie_release_date }
+							<a href="">${movie.movieDirector } </a>${movie.movieOpendate }
 						<p class="ratingview">Critic's Rating:</p>
 						<div class="rating">
 							<span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span>
 						</div>
-						<p class="ratingview">&nbsp;${movie.movie_res_rating}/10</p>
+						<p class="ratingview">&nbsp;9.34/10</p>
 						<div class="clearfix"></div>
 						<p class="ratingview c-rating">Avg Readers' Rating:</p>
 						<div class="rating c-rating">
 							<span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span> <span>☆</span>
 						</div>
 						<p class="ratingview c-rating">&nbsp;
-							${movie.movie_star_rating}/10</p>
+							9.34/10</p>
 						<div class="clearfix"></div>
 						<div class="yrw">
 							<div class="dropdown-button"></div>
 							<div class="rtm text-center"></div>
 
 							<div class="wt text-center">
-								<a href="${movie.movie_trailer}">WATCH THIS TRAILER</a>
+								<a href="${movie.movieTrailer}">WATCH THIS TRAILER</a>
 							</div>
 							<div class="clearfix"></div>
 						</div>
 						<p class="info">CAST:&nbsp;
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							${movie.movie_cast }</p>
+							${movie.movieActor }</p>
 						<p class="info">DIRECTION:
-							&nbsp;&nbsp;&nbsp;&nbsp;${movie.movie_director}</p>
+							&nbsp;&nbsp;&nbsp;&nbsp;${movie.movieDirector}</p>
 						<p class="info">GENRE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							${movie.movie_genre }</p>
+							${movie.movieGenre }</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class="single">
 					<p>
-						STORY:<i> ${movie.movie_synopsis}</i>
+						STORY:<i> ${movie.movieContents}</i>
 					</p>
 				</div>
 				<!-- comments-section-starts -->
@@ -78,7 +78,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="comments-section-grid"></div>
 					<div class="col-md-10 comments-section-grid-text">
 						<h4>
-							<a href="/replies/get?replyNO=${reply.commentNo}">${reply.memberId}님의 점수는?
+							<a href="/replies/get?commentNo=${reply.commentNo}">${reply.memberId}님의 점수는?
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${reply.commentStarRating } 점 </a>
 						</h4>
 						<label>${reply.commentCreateTime } </label>
@@ -99,7 +99,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="blog-form">
 					<form action="/replies/writeReview" method="post">
 						<select class="dropdown" tabindex="9"
-							data-settings='{"wrapperClass":"flat"}' name='stars'
+							data-settings='{"wrapperClass":"flat"}' name='commentStarRating'
 							value=${reply }>
 							<option value="0">Your rating</option>
 							<option value="1">1.Poor</option>
@@ -112,12 +112,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<option value="8">8.Outstanding</option>
 							<option value="9">9.Best</option>
 							<option value="10">10.Best You've never seen before</option>
-						</select> <input type="hidden" value="${movie.movie_no}" name="movieNO">
-						<input type="hidden" value="${memberVO.member_no}" name="memberNO"> <input
-							type="text" class="text" value="title" name="title"
-							onfocus="this.value = '';"
-							onblur="if (this.value == '') {this.value = 'Enter title';}">
-						<textarea name="content"></textarea>
+						</select> <input type="hidden" value="${movie.movieNo}" name="movieNo">
+						<input type="hidden" value="${responseDto.memberNo}" name="memberNO"> 
+						<input type="hidden" value="${movie.movieTitle}" name="movieTitle">
+						<input type="hidden" value="${responseDto.memberId}" name="memberId">
+						<input type="hidden" value="${responseDto.memberName }" name="memberName">
+						<input type="hidden" value="${responseDto.memberName }" name="memberNickname">
+						<textarea name="commentContents"></textarea>
 						<input type="submit" value="SUBMIT COMMENT">
 					</form>
 
@@ -131,12 +132,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <div class="review-slider">
 	<ul id="flexiselDemo1">
-		<li><img src="${list[0].movie_image_file_name}" alt="" /></li>
-		<li><img src="${list[1].movie_image_file_name}" alt="" /></li>
-		<li><img src="${list[2].movie_image_file_name}" alt="" /></li>
-		<li><img src="${list[3].movie_image_file_name}" alt="" /></li>
-		<li><img src="${list[4].movie_image_file_name}" alt="" /></li>
-		<li><img src="${list[5].movie_image_file_name}" alt="" /></li>
+		<li><img src="${list[0].movieImage}" alt="" /></li>
+		<li><img src="${list[1].movieImage}" alt="" /></li>
+		<li><img src="${list[2].movieImage}" alt="" /></li>
+		<li><img src="${list[3].movieImage}" alt="" /></li>
+		<li><img src="${list[4].movieImage}" alt="" /></li>
+		<li><img src="${list[5].movieImage}" alt="" /></li>
 	</ul>
 	<script type="text/javascript">
 		$(window).load(function() {

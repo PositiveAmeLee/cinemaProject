@@ -5,9 +5,9 @@
 
 	<insert id="noticeManagerRegister">
 	<![CDATA[
-		INSERT INTO MANAGER_NOTICE (NOTICENO, NOTICETITLE,
+		INSERT INTO MOVIE_NOTICE (NOTICENO, NOTICETITLE,
 		NOTICECONTENTS, NOTICECREATETIME)
-		VALUES(sequence_notice.nextval,
+		VALUES(seq_notice.nextval,
 		#{noticeTitle}, #{noticeContents}, sysdate)
 	]]>
 	</insert>
@@ -15,9 +15,9 @@
 	<select id="noticeManagerList"
 		resultType="com.cinema.domain.NoticeDto$NoticeResultDto">
 	<![CDATA[
-	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS, NOTICECREATETIME FROM (SELECT /*+INDEX_DESC(MANAGER_NOTICE MANAGER_NOTICE_PK)*/ ROWNUM RN, 
+	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS, NOTICECREATETIME FROM (SELECT /*+INDEX_DESC(MOVIE_NOTICE MOVIE_NOTICE_PK)*/ ROWNUM RN, 
 	NOTICENO, NOTICETITLE, NOTICECONTENTS, NOTICECREATETIME 
-	FROM MANAGER_NOTICE WHERE
+	FROM MOVIE_NOTICE WHERE
 	]]>
 		<trim prefix=" (" suffix=") AND ">
 			<foreach item="type" collection="typeArr">
@@ -36,29 +36,29 @@
 
 	<select id="noticeManagerGetTotalCount" resultType="int">
 	<![CDATA[
-	SELECT COUNT(*) FROM MANAGER_NOTICE WHERE NOTICENO>0
+	SELECT COUNT(*) FROM MOVIE_NOTICE WHERE NOTICENO>0
 	]]>
 	</select>
 	
 	<select id="noticeManagerGet"
 		resultType="com.cinema.domain.NoticeDto$NoticeResultDto">
 	<![CDATA[
-	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS FROM MANAGER_NOTICE WHERE NOTICENO=#{noticeNo}
+	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS FROM MOVIE_NOTICE WHERE NOTICENO=#{noticeNo}
 	]]>
 	</select>
 
 	<update id="noticeManagerModify">
 	<![CDATA[	
-		UPDATE MANAGER_NOTICE SET NOTICETITLE=#{noticeTitle}, NOTICECONTENTS=#{noticeContents}, NOTICEUPDATETIME=sysdate WHERE NOTICENO=#{noticeNo}
+		UPDATE MOVIE_NOTICE SET NOTICETITLE=#{noticeTitle}, NOTICECONTENTS=#{noticeContents}, NOTICEUPDATETIME=sysdate WHERE NOTICENO=#{noticeNo}
 	]]>
 	</update>
 
-	<delete id="noticeManagerDelete">
+	<update id="noticeManagerDelete">
 	<![CDATA[
-		DELETE FROM MANAGER_NOTICE WHERE
-		NOTICENO=#{noticeNo}
+		UPDATE MOVIE_NOTICE SET
+		DEL_YN='Y' WHERE NOTICENO=#{noticeNo}
 	]]>
-	</delete>
+	</update>
 
 </mapper>
 

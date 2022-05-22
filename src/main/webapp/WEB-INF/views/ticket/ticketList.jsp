@@ -1,17 +1,17 @@
-<%@page import="com.cinema.domain.TicketVO"%>
+<%@page import="com.cinema.domain.ReservationDto.ReservationResultDto"%>
 <%@page import="java.util.List"%>
-<%@page import="com.cinema.domain.MemberVO"%>
+<%@page import="com.cinema.domain.MemberDto.MemberLoginResponseDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <%
-MemberVO login = (MemberVO) session.getAttribute("memberVO");
+MemberLoginResponseDto login = (MemberLoginResponseDto) session.getAttribute("responseDto");
 if (login != null)
 	System.out.println(login.toString());
 
-List<TicketVO> list = (List<TicketVO>) request.getAttribute("ticketList");
+List<ReservationResultDto> list = (List<ReservationResultDto>) request.getAttribute("ticketList");
 %>
 
 <head>
@@ -37,16 +37,16 @@ List<TicketVO> list = (List<TicketVO>) request.getAttribute("ticketList");
 
 
 
-	<%
-	if (login == null) {
-	%>
+<c:if test="${isLogOn!=true or empty responseDto }">
+	
 	<script>
-		alert("로그인이 필요한 작업입니다 로그인을 진행해 주세요!")
-		location.href = "moveMain.do"
+	
+	alert("로그인이 필요한 작업입니다 로그인을 진행해 주세요!")
+	location.href = "/member/login"
+	
 	</script>
-	<%
-	}
-	%>
+
+</c:if>
 	<%@ include file="../common/header.jsp"%>
 	<div>
 		<div class="my-page-container">
@@ -60,7 +60,7 @@ List<TicketVO> list = (List<TicketVO>) request.getAttribute("ticketList");
 					<%
 					} else {
 					for (int i = 0; i < list.size(); i++) {
-						TicketVO reserveDto = list.get(i);
+						ReservationResultDto reserveDto = list.get(i);
 					%>
 					<div class="movie-reserve">
 						

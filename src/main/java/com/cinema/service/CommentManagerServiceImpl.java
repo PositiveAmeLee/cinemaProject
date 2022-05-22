@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor //생성자 주입
 public class CommentManagerServiceImpl implements CommentManagerService {
 	//@Autowired 생략 = 스프링 4.3버전 이후 지원하는 묵시적 자동 주입
-	private CommentManagerMapper commentManagerMapper;
+	private final CommentManagerMapper commentManagerMapper;
 	
 	@Override
 	public List<CommentDto.CommentResultDto> commentManagerList(Criteria cri) {

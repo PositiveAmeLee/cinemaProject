@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cinema.domain.Criteria;
 import com.cinema.domain.MemberDto;
 import com.cinema.domain.MovieDto;
 import com.cinema.service.MemberService;
@@ -29,9 +30,9 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor // 생성자 주입
 public class MemberController {
 	// @Autowired 생략 = 스프링 4.3이후 지원하는 묵시적 자동 주입
-	private MemberService memberService;
+	private final MemberService memberService;
 	// 회원가입페이지 , 로그인페이지에서 영화이미지를 띄워주기위한 용도입니다.
-	private MovieService movieService;
+	private final MovieService movieService;
 
 	// 회원가입 페이지 이동
 	@GetMapping("/join")
