@@ -13,7 +13,7 @@
 	</insert>
 
 	<select id="noticeManagerList"
-		resultType="com.cinema.domain.NoticeManagerDto">
+		resultType="com.cinema.domain.NoticeDto$NoticeResultDto">
 	<![CDATA[
 	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS, NOTICECREATETIME FROM (SELECT /*+INDEX_DESC(MANAGER_NOTICE MANAGER_NOTICE_PK)*/ ROWNUM RN, 
 	NOTICENO, NOTICETITLE, NOTICECONTENTS, NOTICECREATETIME 
@@ -41,7 +41,7 @@
 	</select>
 	
 	<select id="noticeManagerGet"
-		resultType="com.cinema.domain.NoticeManagerDto">
+		resultType="com.cinema.domain.NoticeDto$NoticeResultDto">
 	<![CDATA[
 	SELECT NOTICENO, NOTICETITLE, NOTICECONTENTS FROM MANAGER_NOTICE WHERE NOTICENO=#{noticeNo}
 	]]>

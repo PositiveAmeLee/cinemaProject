@@ -4,7 +4,7 @@
 	namespace="com.cinema.mapper.MovieManagerMapper">
 
 	<select id="movieManagerList"
-		resultType="com.cinema.domain.MovieManagerDto">
+		resultType="com.cinema.domain.MovieDto$MovieResultDto">
 		<![CDATA[
 		SELECT * FROM (SELECT /*+INDEX_DESC(MANAGER_MOVIE MANAGER_MOVIENO_PK)*/
 		ROWNUM RN, MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE, MOVIEGENRE, MOVIEGRADE, MOVIEOPENDATE, MOVIECONTENTS, MOVIERESRATING, 
@@ -42,7 +42,7 @@
 	</insert>
 
 	<select id="movieManagerGet"
-		resultType="com.cinema.domain.MovieManagerDto">
+		resultType="com.cinema.domain.MovieDto$MovieResultDto">
 	<![CDATA[
 	SELECT MOVIENO, MOVIETITLE, MOVIEETITLE, MOVIEDIRECTOR, MOVIEACTOR, MOVIETYPE,
 		MOVIEGENRE, MOVIEGRADE, MOVIECONTENTS, MOVIEOPENDATE, MOVIESTATUS, MOVIEIMAGE, MOVIEPLAYTIME FROM MANAGER_MOVIE WHERE MOVIENO=#{movieNo}
@@ -56,9 +56,9 @@
 	]]>
 	</update>
 
-	<delete id="movieManagerDelete">
+	<update id="movieManagerDelete">
 	<![CDATA[
-	DELETE FROM MANAGER_MOVIE WHERE MOVIENO=#{movieNo}
+	UPDATE MANAGER_MOVIE SET DEL_YN = 'Y' WHERE MOVIENO=#{movieNo}
 	]]>
-	</delete>
+	</update>
 </mapper>

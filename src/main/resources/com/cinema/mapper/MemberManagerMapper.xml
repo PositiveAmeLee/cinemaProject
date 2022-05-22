@@ -4,7 +4,7 @@
 	namespace="com.cinema.mapper.MemberManagerMapper">
 
 	<select id="memberGetListWithPaging"
-		resultType="com.cinema.domain.MemberManagerDto">
+		resultType="com.cinema.domain.MemberDto">
 	<![CDATA[
 		SELECT * FROM (SELECT /*+INDEX_DESC(MANAGER_MEMBER MANAGER_MEMBER_PK)*/
 		ROWNUM RN, MEMBERNO, MEMBERID, MEMBERNICKNAME, MEMBERNAME, MEMBERBIRTH, MEMBERGENDER, MEMBERAUTHORITY, MEMBERPHONE, MEMBERTELL, MEMBEREMAIL
@@ -32,7 +32,7 @@
 	</select>
 
 	<select id="memberGet"
-		resultType="com.cinema.domain.MemberManagerDto">
+		resultType="com.cinema.domain.MemberDto">
 	<![CDATA[	
 		SELECT * FROM MANAGER_MEMBER WHERE MEMBERNO=#{memberNo}
 		]]>

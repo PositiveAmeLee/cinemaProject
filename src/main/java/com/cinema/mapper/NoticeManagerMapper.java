@@ -3,19 +3,19 @@ package com.cinema.mapper;
 import java.util.List;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.NoticeManagerDto;
+import com.cinema.domain.NoticeDto;
 
 public interface NoticeManagerMapper {
 	
-	public boolean noticeManagerRegister(NoticeManagerDto noticeManagerDto);
+	public boolean noticeManagerRegister(NoticeDto.NoticeCreateDto createDto);
 
-	public List<NoticeManagerDto> noticeManagerList(Criteria cri);
+	public List<NoticeDto.NoticeResultDto> noticeManagerList(Criteria cri);
 	
 	public int noticeManagerGetTotalCount();
 	
-	public List<NoticeManagerDto> noticeManagerGet(long noticeNo);
+	public NoticeDto.NoticeResultDto noticeManagerGet(long noticeNo);
 	
-	public boolean noticeManagerModify(NoticeManagerDto noticeManagerDto);
+	public boolean noticeManagerModify(NoticeDto.NoticeModifyDto modifyDto);
 	
 	public boolean noticeManagerDelete(long noticeNo);
 	

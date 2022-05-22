@@ -3,7 +3,7 @@ package com.cinema.domain;
 import lombok.Data;
 
 @Data
-public class TicketVO extends BaseVO{
+public class TicketVO {
 	
 	private Long memberNO;
 	private Long ticketNO;

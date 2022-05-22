@@ -78,11 +78,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="comments-section-grid"></div>
 					<div class="col-md-10 comments-section-grid-text">
 						<h4>
-							<a href="/replies/get?replyNO=${reply.replyNO}">${reply.title}
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${reply.stars } 점 </a>
+							<a href="/replies/get?replyNO=${reply.commentNo}">${reply.memberId}님의 점수는?
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${reply.commentStarRating } 점 </a>
 						</h4>
-						<label>${reply.createdAt } </label>
-						<p>${reply.content}</p>
+						<label>${reply.commentCreateTime } </label>
+						<p>${reply.commentContents}</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>

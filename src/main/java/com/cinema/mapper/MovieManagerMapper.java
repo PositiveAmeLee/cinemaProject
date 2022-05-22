@@ -3,19 +3,19 @@ package com.cinema.mapper;
 import java.util.List;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.MovieManagerDto;
+import com.cinema.domain.MovieDto;
 
 public interface MovieManagerMapper {
 	
-	public List<MovieManagerDto> movieManagerList(Criteria cri);
+	public List<MovieDto.MovieResultDto> movieManagerList(Criteria cri);
 	
 	public int movieManagerGetTotalCount();
 	
-	public boolean movieManagerRegister(MovieManagerDto movieManagerDto);
+	public boolean movieManagerRegister(MovieDto.MovieCreateDto createDto);
 
-	public List<MovieManagerDto> movieManagerGet(long movieNo);
+	public MovieDto.MovieResultDto movieManagerGet(long movieNo);
 	
-	public boolean movieManagerModify(MovieManagerDto movieManagerDto);
+	public boolean movieManagerModify(MovieDto.MovieModifyDto modifyDto);
 	
 	public boolean movieManagerDelete(long movieNo);
 	

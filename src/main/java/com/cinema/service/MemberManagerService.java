@@ -3,16 +3,16 @@ package com.cinema.service;
 import java.util.List;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.MemberManagerDto;
+import com.cinema.domain.MemberDto;
 
 public interface MemberManagerService {
 	
-	public List<MemberManagerDto> memberList(Criteria cri);
+	public List<MemberDto> memberList(Criteria cri);
 	
 	public int memberGetTotal();
 	
-	public List<MemberManagerDto> memberGet(long memberNo);
+	public List<MemberDto> memberGet(long memberNo);
 	
-	public boolean memberModify(MemberManagerDto memberManagerDto);
+	public boolean memberModify(MemberDto.MemberModifyDto modifyDto);
 	
 }

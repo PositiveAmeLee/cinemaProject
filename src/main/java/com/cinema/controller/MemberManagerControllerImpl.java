@@ -10,40 +10,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.MemberManagerDto;
+import com.cinema.domain.MemberDto;
 import com.cinema.domain.PageDto;
 import com.cinema.service.MemberManagerService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
 @RequestMapping("/memberManager/*")
-@AllArgsConstructor
-public class MemberManagerControllerImpl implements MemberManagerController {
-
-	
+@RequiredArgsConstructor //생성자 주입
+public class MemberManagerControllerImpl {
+	//@Autowired 생략 = 스프링 4.3이후 지원하는 묵시적 자동 주입
 	private MemberManagerService memberManagerService;
 
-	@Override
+	/*
+	 * parameter
+	 * Criteria의 필드값
+	 * 페이징을 위해 사용됩니다.
+	 * */
 	@GetMapping("/list")
 	public void memberList(Criteria cri, Model model) {
 		model.addAttribute("memberList", memberManagerService.memberList(cri));
 		model.addAttribute("pageMaker", new PageDto(cri, memberManagerService.memberGetTotal()));
 	}
 
-	@Override
+	/*
+	 * parameter
+	 * member 조회를 위한 primary key(long memberNo)
+	 * */
 	@GetMapping({ "/member", "/modify" })
 	public void memberGet(@RequestParam("memberNo") long memberNo, Model model) {
 		model.addAttribute("member", memberManagerService.memberGet(memberNo));
 	}
 
-	@Override
+	/*
+	 * parameter
+	 * MemberDto.MemberModify의 필드값
+	 * Criteria cri의 필드값
+	 * 수정 후 페이징처리에 사용합니다.
+	 * */
 	@PostMapping("/modify")
-	public String memberModify(MemberManagerDto memberManagerDto, @ModelAttribute("cri") Criteria cri,
-			RedirectAttributes rttr) {
-		boolean result = memberManagerService.memberModify(memberManagerDto);
+	public String memberModify(MemberDto.MemberModifyDto modifyDto, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		boolean result = memberManagerService.memberModify(modifyDto);
 		if (result == true) {
 			rttr.addFlashAttribute("result", "success");
 		} else

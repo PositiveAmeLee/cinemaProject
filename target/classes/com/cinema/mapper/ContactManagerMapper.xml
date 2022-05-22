@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.cinema.mapper.ContactManagerMapper">
+
+	<select id="questionManagerList"
+		resultType="com.cinema.domain.QuestionDto$QuestionResultDto">
+	<![CDATA[
+		SELECT * FROM (SELECT /*+INDEX_DESC(MANAGER_QUESTION MANAGER_QUESTION_PK)*/
+		ROWNUM RN, QUESTIONNO, MEMBERNO, MEMBERNAME, MEMBERPHONE, MEMBEREMAIL, QUESTIONCONTENTS
+		FROM MOVIE_QUESTION WHERE 
+		ROWNUM <= (#{pageNum}*#{amount})) WHERE (RN > (#{pageNum}-1)*#{amount})
+		]]>
+	</select>
+
+	<select id="questionManagerGetTotalCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*) FROM movie_question WHERE QUESTIONNO>0	
+	]]>
+	</select>
+
+	<select id="questionManagerGet"
+		resultType="com.cinema.domain.QuestionDto$QuestionResultDto">
+	<![CDATA[	
+		SELECT QUESTIONNO, MEMBERNO, MEMBERNAME, MEMBERPHONE, MEMBEREMAIL, QUESTIONCONTENTS
+		FROM MOVIE_QUESTION WHERE QUESTIONNO=#{QUESTIONNO}
+		]]>
+	</select>
+
+</mapper>

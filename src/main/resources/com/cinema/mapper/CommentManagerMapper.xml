@@ -4,7 +4,7 @@
 	namespace="com.cinema.mapper.CommentManagerMapper">
 
 	<select id="commentManagerList"
-		resultType="com.cinema.domain.CommentManagerResultMap">
+		resultType="com.cinema.domain.CommentDto$CommnetManagerDto">
 	<![CDATA[
 	SELECT MEMBERNO, MOVIENO, COMMENTNO, COMMENTCONTENTS, COMMENTCREATETIME, COMMENTUPDATETIME, COMMENTSTARRATING, MOVIETITLE, MEMBERNAME, MEMBERNICKNAME, MEMBERID
 	FROM (SELECT /*+INDEX_DESC(MANAGER_MEMBER MANAGER_COMMENT_PK)*/ ROWNUM RN, MC.MEMBERNO, MC.MOVIENO, MC.COMMENTNO, MC.COMMENTCONTENTS, MC.COMMENTCREATETIME, 
@@ -37,16 +37,15 @@
 
 	<select id="commentManagerGetTotalCount" resultType="int">
 	<![CDATA[
-	SELECT COUNT(*) FROM MANAGER_COMMENT WHERE COMMENTNO>0
+	SELECT COUNT(*) FROM MOVIE_COMMENT WHERE COMMENTNO>0
 	]]>
 	</select>
 
-	<delete id="commentManagerDelete">
+	<update id="commentManagerDelete">
 	<![CDATA[
-		DELETE FROM MANAGER_COMMENT WHERE
-		COMMENTNO=#{commentNo}
+		UPDATE MOVIE_COMMENT SET COMMENTNO=#{commentNo}
 	]]>
-	</delete>
+	</update>
 
 </mapper>
 

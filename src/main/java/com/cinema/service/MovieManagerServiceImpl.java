@@ -2,31 +2,24 @@ package com.cinema.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.MovieManagerDto;
+import com.cinema.domain.MovieDto;
 import com.cinema.mapper.MovieManagerMapper;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor//생성자 주입
 public class MovieManagerServiceImpl implements MovieManagerService {
-
-	@Autowired(required = false)
-	private MovieManagerDto movieManagerDto;
-	
-	@Autowired(required = false)
-	private MovieManagerMapper movieManagerMapper;
+	//@Autowired 생략 = 스프링 4.3버전 이후 지원하는 묵시적 자동 주입
+	private final MovieManagerMapper movieManagerMapper;
 	
 	@Override
-	public List<MovieManagerDto> movieManagerList(Criteria cri) {
+	public List<MovieDto.MovieResultDto> movieManagerList(Criteria cri) {
 		return movieManagerMapper.movieManagerList(cri);
 	}
 	
@@ -34,18 +27,18 @@ public class MovieManagerServiceImpl implements MovieManagerService {
 		return movieManagerMapper.movieManagerGetTotalCount();
 	}
 	
-	public boolean movieManagerRegister(MovieManagerDto movieManagerDto) {
-		return movieManagerMapper.movieManagerRegister(movieManagerDto);
+	public boolean movieManagerRegister(MovieDto.MovieCreateDto createDto) {
+		return movieManagerMapper.movieManagerRegister(createDto);
 	}
 
 	@Override
-	public List<MovieManagerDto> movieManagerGet(long movieNo) {
+	public MovieDto.MovieResultDto movieManagerGet(long movieNo) {
 		return movieManagerMapper.movieManagerGet(movieNo);
 	}
 
 	@Override
-	public boolean movieManagerModify(MovieManagerDto movieManagerDto) {
-		return movieManagerMapper.movieManagerModify(movieManagerDto);
+	public boolean movieManagerModify(MovieDto.MovieModifyDto modifyDto) {
+		return movieManagerMapper.movieManagerModify(modifyDto);
 	}
 
 	@Override

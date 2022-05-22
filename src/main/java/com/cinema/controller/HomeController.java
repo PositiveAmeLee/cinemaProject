@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cinema.domain.MovieVO;
+import com.cinema.domain.MovieDto;
 import com.cinema.service.MovieService;
 
 import lombok.AllArgsConstructor;
@@ -29,7 +29,7 @@ public class HomeController {
 	public String home(Model model) {
 		log.info("move to home..........");
 // 메인화면에 영화리스트를 보여주기 위해 MovieVO를 List에 담아서 model에 추가했습니다.
-		List<MovieVO> movieList = movieService.movieList();
+		List<MovieDto.MovieResultDto> movieList = movieService.movieList();
 		model.addAttribute("list", movieList);
 // 메인화면 최상단에 보여주는 메인영화는 가지고 있는 영화 중 랜덤으로 뽑기위해 Math.random()을 이용했습니다.
 		int main = (int) (Math.random() * movieList.size());

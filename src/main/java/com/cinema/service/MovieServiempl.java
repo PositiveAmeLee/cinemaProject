@@ -4,53 +4,27 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cinema.domain.Criteria;
-import com.cinema.domain.MovieVO;
+import com.cinema.domain.MovieDto;
 import com.cinema.mapper.MovieMapper;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor//생성자 주입
 public class MovieServiempl implements MovieService {
-
-	private MovieMapper movieMapper;
+	//@Autowired 생략 = 스프링 4.3 이후 지원하는 묵시적 자동 주입
+	private final MovieMapper movieMapper;
 
 	@Override
-	public List<MovieVO> movieList() {
+	public List<MovieDto.MovieResultDto> movieList() {
 		return movieMapper.movieList();
 	}
 
 	@Override
-	public MovieVO movieInfo(long movie_no) {
-		return movieMapper.movieInfo(movie_no);
+	public MovieDto.MovieResultDto movieInfo(long movieNo) {
+		return movieMapper.movieInfo(movieNo);
 	}
-
-	@Override
-	public List<MovieVO> sortStarRating() {
-		// TODO Auto-generated method stub
-		return movieMapper.sortByStar();
-	}
-
-	@Override
-	public List<MovieVO> sortResRating() {
-		// TODO Auto-generated method stub
-		return movieMapper.sortByRes();
-	}
-
-	@Override
-	public List<MovieVO> movieSearch(Criteria cri) {
-		// TODO Auto-generated method stub
-		return movieMapper.movieSearch(cri);
-	}
-
-//	@Override
-//	public List<MovieVO> sortReleasedate(date movie_release_date) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 
 
 }

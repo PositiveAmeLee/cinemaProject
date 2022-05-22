@@ -4,13 +4,13 @@
   "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cinema.mapper.MovieMapper">
 
-	<select id="movieList" resultType="com.cinema.domain.MovieVO">
+	<select id="movieList" resultType="com.cinema.domain.MovieDto$MovieResultDto">
 	
 	select * from movie where movie_no > 0
 	
 	</select>
 
-	<select id="movieInfo" resultType="com.cinema.domain.MovieVO">
+	<select id="movieInfo" resultType="com.cinema.domain.MovieDto$MovieResultDto">
 	
 	select * from movie where movie_no = #{movie_no}
 	

@@ -2,31 +2,24 @@ package com.cinema.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cinema.domain.Criteria;
-import com.cinema.domain.MemberManagerDto;
+import com.cinema.domain.MemberDto;
 import com.cinema.mapper.MemberManagerMapper;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class MemberManagerServiceImpl implements MemberManagerService {
-
-	@Autowired(required = false)
+	//@Autowired 생략 = 스프링 4.3버전 이후 지원하는 묵시적 자동 주입
 	MemberManagerMapper memberManagerMapper;
 	
-	@Autowired(required = false)
-	MemberManagerDto memberManagerDto;
-
 	@Override
-	public List<MemberManagerDto> memberList(Criteria cri) {
+	public List<MemberDto> memberList(Criteria cri) {
 		return memberManagerMapper.memberGetListWithPaging(cri);
 	}
 
@@ -36,13 +29,13 @@ public class MemberManagerServiceImpl implements MemberManagerService {
 	}
 
 	@Override
-	public List<MemberManagerDto> memberGet(long memberNo) {
+	public List<MemberDto> memberGet(long memberNo) {
 		return memberManagerMapper.memberGet(memberNo);
 	}
 
 	@Override
-	public boolean memberModify(MemberManagerDto memberManagerDto) {
-		return memberManagerMapper.memberModify(memberManagerDto);
+	public boolean memberModify(MemberDto.MemberModifyDto modifyDto) {
+		return memberManagerMapper.memberModify(modifyDto);
 	}
 
 }

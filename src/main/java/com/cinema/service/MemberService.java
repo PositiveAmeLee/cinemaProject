@@ -1,26 +1,21 @@
 package com.cinema.service;
 
 import java.util.List;
-import java.util.Map;
 
-import com.cinema.domain.MemberVO;
+import com.cinema.domain.MemberDto;
 
 public interface MemberService {
 
-	// 회원가입
-	public int memberJoin(MemberVO memberVO);
+	public int memberJoin(MemberDto.MemberCreateDto createDto);
 	
-	//로그인
-	public MemberVO login(MemberVO memberVO);
+	public MemberDto.MemberLoginResponseDto login(MemberDto.MemberLoginRequestDto requestDto);
 
-	//중복확인
+	public int memberModify(MemberDto.MemberModifyDto modifyDto);
+
 	public String overlapped(String id);
 
-	//회원정보수정
-	public int memberModify(MemberVO memberVO);
+	public List<String> findId(MemberDto.MemberFindIdDto findIdDto);
 
-	public List<MemberVO> findId(Map<String,String> emailMap);
-
-	public int delete(int member_no);
+	public int delete(long memberno);
 	
 }

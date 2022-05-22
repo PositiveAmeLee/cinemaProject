@@ -2,31 +2,28 @@ package com.cinema.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cinema.domain.CommentManagerResultMap;
+import com.cinema.domain.CommentDto;
 import com.cinema.domain.Criteria;
 import com.cinema.mapper.CommentManagerMapper;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor //생성자 주입
 public class CommentManagerServiceImpl implements CommentManagerService {
-	
-	@Autowired(required = false)
+	//@Autowired 생략 = 스프링 4.3버전 이후 지원하는 묵시적 자동 주입
 	private CommentManagerMapper commentManagerMapper;
 	
 	@Override
-	public List<CommentManagerResultMap> commentManagerList(Criteria cri) {
+	public List<CommentDto.CommentResultDto> commentManagerList(Criteria cri) {
 		return commentManagerMapper.commentManagerList(cri);
 	}
 	
+	@Override
 	public int commentManagerGetTotalCount() {
 		return commentManagerMapper.commentManagerGetTotalCount();
 	}
